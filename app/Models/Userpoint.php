@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Userpoint extends Model
+{   
+    protected $fillable = [
+        'user_id', // Agrega 'userId' aquí
+        'point',
+        // Otros atributos permitidos para asignación masiva
+    ];
+    use HasFactory;
+}

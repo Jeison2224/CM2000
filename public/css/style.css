@@ -1,0 +1,15 @@
+
+#areaClick {
+    cursor: pointer;
+    padding: 20px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#puntuacion,
+#nivel {
+    margin-top: 20px;
+    font-size: 18px;
+}

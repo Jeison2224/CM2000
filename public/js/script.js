@@ -1,0 +1,158 @@
+var click = 0;
+
+let inventario = [0,0,0];
+let clickAuto = [1,5,10];
+let precioClick = [2,4,6];
+
+function clic() {
+    click++;
+    //enviarClicks(click);
+    enviar();
+    verUserpoints();
+}
+
+function comprar(item) {
+    if (click >= precioClick[item]) {
+        inventario[item]++;
+        click -= precioClick[item];
+    }  else {
+        alert("No tienes suficiente clicks");
+    }
+}
+
+function auto() {
+    for (var i = 0; i < inventario.length; i++) {
+        click += inventario[i]*clickAuto[i];
+    }
+}
+
+function update() {
+    document.getElementById("valorPuntuacion").innerHTML  = click;
+    document.getElementById("inventario").innerHTML = `item1: ${inventario[0]}<br>
+                                                        item2: ${inventario[1]}<br>
+                                                        item3: ${inventario[2]}
+    `;
+}
+
+/*function enviarClicks(clicks) {
+    console.log('enviar ok');
+    fetch('http://localhost/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
+            // Puedes añadir otros headers si es necesario, como tokens de autenticación
+        },
+        body: JSON.stringify({ userId, clicks }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al guardar clicks');
+        }
+        // Puedes manejar la respuesta si es necesario
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}*/
+
+function verUserpoints() {
+    $.ajax({
+        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/all',
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            id:1
+        }
+    }).done(function(res){
+        var datos = JSON.parse(res);
+        console.log(res);
+        for (let x = 0; x < datos.length; x++) {
+            //alert(datos[x].user_id);
+        }
+    });
+}
+
+function enviar() {
+    $.ajax({
+        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', // Ruta para insertar datos en la base de datos
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            user_id: 1, // Aquí proporciona el userId que deseas insertar
+            point: click // Aquí proporciona los puntos que deseas insertar
+        }
+    }).done(function(response){
+        console.log(response); // Muestra la respuesta del servidor en la consola
+    });
+}
+
+const email = document.getElementById('email');
+console.log('Correo electrónico:', email);
+
+let updatePantalla = 30;
+let updateAuto = 1;
+
+setInterval(function() {
+    auto();
+},1000/updateAuto);
+
+setInterval(function() {
+    update();
+},1000/updatePantalla);
+
+const datos = [
+    'Hiurgiy',
+    'Klosvans',
+    'Piwecer',
+    'Iinshall',
+    'Qonbruix',
+    'Lillelv',
+    'Frioxaz',
+    'Pullar',
+    'Dewass',
+    'Krayfgur',
+    'Porstyk',
+    'Gyevrer',
+    'Oinzus',
+    'Vionhaas',
+    'Palhurrak',
+    'Atensis',
+    'Wountuhs',
+    'Eimnas'
+];
+
+
+function crearBotones() {
+    // Obtener el contenedor donde se agregarán los botones
+    const contenedor = document.getElementById('btncompras');
+
+    // Iterar sobre el array de datos
+    datos.forEach(nombre => {
+        // Crear un nuevo elemento de botón
+        const boton = document.createElement('button');
+
+        // Establecer el texto del botón como el nombre del array
+        boton.textContent = nombre;
+
+        // Agregar la clase especificada a los botones
+        boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2');
+
+
+        // Agregar un evento de clic al botón (opcional)
+        boton.addEventListener('click', function() {
+            console.log('Has hecho clic en ' + nombre);
+            // Agregar aquí cualquier lógica adicional que desees ejecutar cuando se haga clic en el botón
+        });
+
+        // Agregar el botón al contenedor
+        contenedor.appendChild(boton);
+    });
+}
+
+// Llamar a la función para crear los botones al cargar la página (opcional)
+window.addEventListener('DOMContentLoaded', crearBotones);
