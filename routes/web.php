@@ -43,4 +43,14 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
+Route::middleware('adminauth')->group(function () {
+    Route::get('userpoint', 'UserpointController@index')->name('userpoint.index');
+    Route::get('userpoint/id={userpoint?}', 'UserpointController@show')->name('userpoint.show');
+    Route::get('userpoint/create', 'UserpointController@create')->name('userpoint.create');
+    Route::post('userpoint/{userpoint?}', 'UserpointController@store')->name('userpoint.store');
+    Route::get('userpoint/{userpoint}/edit', 'UserpointController@edit')->name('userpoint.edit');
+    Route::patch('userpoint/{userpoint}', 'UserpointController@update')->name('userpoint.update');
+    Route::delete('userpoint/{userpoint}', 'UserpointController@destroy')->name('userpoint.destroy');
+});
+
 require __DIR__.'/adminauth.php';

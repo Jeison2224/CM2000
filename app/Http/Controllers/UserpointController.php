@@ -10,6 +10,57 @@ use mysqli;
 
 class UserpointController extends Controller
 {
+    public function index() {
+        $userpointList = Userpoint::all();
+        return view('userpoint.all', ['userpointList'=>$userpointList]);
+    }
+
+    public function show($id) {
+        $p = Userpoint::find($id);
+        $data['userpoint'] = $p;
+        $s = Userpoint::find($id)->supplier;
+        $data['supplier'] = $s;
+        return view('userpoint.show', $data);
+    }
+
+    /*public function create() {
+        $suppliers = Supplier::all();
+        return view('product.form', array('suppliers' => $suppliers));
+    }*/
+
+    public function store(Request $r) {
+        $p = new Userpoint();
+        $p->name = $r->name;
+        $p->description = $r->description;
+        $p->price = $r->price;
+        $p->stock = $r->stock;
+        $p->supplier_id = $r->supplier_id;
+        $p->save();
+        return redirect()->route('product.index');
+    }
+
+    /*public function edit($id) {
+        $product = Product::find($id);
+        $suppliers = Supplier::all();
+        return view('product.form', array('product' => $product, 'suppliers' => $suppliers));
+    }*/
+
+    public function update($id, Request $r) {
+        $p = Userpoint::find($id);
+        $p->name = $r->name;
+        $p->description = $r->description;
+        $p->price = $r->price;
+        $p->stock = $r->stock;
+        $p->supplier_id = $r->supplier_id;
+        $p->save();
+        return redirect()->route('Userpoint.index');
+    }
+
+    public function destroy($id) {
+        $p = Userpoint::find($id);
+        $p->delete();
+        return redirect()->route('Userpoint.index');
+    }
     //
     /*public function guardarPuntos(Request $request)
     {
@@ -52,9 +103,6 @@ class UserpointController extends Controller
         }
     }
     
-    
-    
-
     public function all()
     {
         $userp = \DB::table('userpoints')
