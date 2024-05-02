@@ -1,21 +1,21 @@
 
-    @isset($product)
+    @isset($ranking)
         <br><br>
-        <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST">
+        <form action="{{ route('admin.ranking.update', ['ranking' => $ranking->id]) }}" method="POST">
             @method('PATCH')
     @else
-        <form action="{{ route('admin.user.store') }}" method="POST">
+        <form action="{{ route('admin.ranking.store') }}" method="POST">
     @endisset
             @csrf
             <br>
             <table class='sinbordes'>
                 <tr>
                     <td class='sinbordes'>Nombre:</td>
-                    <td class='sinbordes'><input type="text" name="name" value="{{ $user->name ?? '' }}" required></td>
+                    <td class='sinbordes'><input type="text" name="name" value="{{ $ranking->name ?? '' }}" required></td>
                 </tr>
                 <tr>
-                    <td class='sinbordes'>Email:</td>
-                    <td class='sinbordes'><input type="text" name="email" value="{{ $user->email ?? '' }}" required></td>
+                    <td class='sinbordes'>clics:</td>
+                    <td class='sinbordes'><input type="text" name="point" value="{{ $ranking->point ?? '' }}" required></td>
                 </tr>
                 <tr>
                    {{-- <td class='sinbordes'>Proveedor:</td>
@@ -32,7 +32,7 @@
                     </td> --}}
                 </tr>
                 <tr>
-                    <td class='sinbordes'><a href="{{ route('admin.user.index') }}">Volver al listado</a></td>
+                    <td class='sinbordes'><a href="{{ route('admin.ranking.index') }}">Volver al listado</a></td>
                     <td class='sinbordes'><input type="submit"></td>
                 </tr>
             </table>

@@ -14,5 +14,20 @@ class LogroTableSeeder extends Seeder
     public function run(): void
     {
         //
+        DB::table('logros')->insert([
+            'nombre' => 'Doble Dígitos',
+            'description' => 'Alcanza una puntuación de 10 haciendo clics',
+            'point' => 10,
+        ]);
+        DB::table('logros')->insert([
+            'nombre' => 'Binario Brillante',
+            'description' => 'Haz clic dos veces para convertir un número decimal a binario',
+            'point' => 8,
+        ]);
+        DB::table('logros')->insert([
+            'nombre' => 'Dupla Destreza',
+            'description' => 'Alcanza una puntuación de 22 haciendo clics',
+            'point' => 22,
+        ]);
     }
 }

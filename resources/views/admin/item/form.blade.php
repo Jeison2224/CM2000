@@ -1,24 +1,32 @@
 
-    @isset($product)
+    @isset($item)
         <br><br>
-        <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST">
+        <form action="{{ route('admin.item.update', ['item' => $item->id]) }}" method="POST">
             @method('PATCH')
     @else
-        <form action="{{ route('admin.user.store') }}" method="POST">
+        <form action="{{ route('admin.item.store') }}" method="POST">
     @endisset
             @csrf
             <br>
             <table class='sinbordes'>
                 <tr>
                     <td class='sinbordes'>Nombre:</td>
-                    <td class='sinbordes'><input type="text" name="name" value="{{ $user->name ?? '' }}" required></td>
+                    <td class='sinbordes'><input type="text" name="name" value="{{ $item->name ?? '' }}" required></td>
                 </tr>
                 <tr>
-                    <td class='sinbordes'>Email:</td>
-                    <td class='sinbordes'><input type="text" name="email" value="{{ $user->email ?? '' }}" required></td>
+                    <td class='sinbordes'>Descripcion:</td>
+                    <td class='sinbordes'><input type="text" name="description" value="{{ $item->description ?? '' }}" required></td>
                 </tr>
                 <tr>
-                   {{-- <td class='sinbordes'>Proveedor:</td>
+                    <td class='sinbordes'>Precio:</td>
+                    <td class='sinbordes'><input type="text" name="precio" value="{{ $item->precio ?? '' }}" required></td>
+                </tr>
+                <tr>
+                    <td class='sinbordes'>Cantidad:</td>
+                    <td class='sinbordes'><input type="text" name="cantidadclics" value="{{ $item->cantidadclics ?? '' }}" required></td>
+                </tr>
+                {{--<tr>
+                    <td class='sinbordes'>Proveedor:</td>
                     <td class='sinbordes'>
                         <select name="supplier_id">
                             @foreach($suppliers as $supplier)
@@ -29,10 +37,10 @@
                                 >{{ $supplier->name }}</option>
                             @endforeach
                         </select>
-                    </td> --}}
-                </tr>
+                    </td> 
+                </tr> --}}
                 <tr>
-                    <td class='sinbordes'><a href="{{ route('admin.user.index') }}">Volver al listado</a></td>
+                    <td class='sinbordes'><a href="{{ route('admin.item.index') }}">Volver al listado</a></td>
                     <td class='sinbordes'><input type="submit"></td>
                 </tr>
             </table>

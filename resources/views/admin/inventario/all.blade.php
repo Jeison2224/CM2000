@@ -1,17 +1,18 @@
     <table class='sinbordes'>
         <tr>
-            <th>id</th><th>Nombre</th><th>Email</th><th class='sinbordes'></th><th class='sinbordes'></th>
+            <th>Id Item</th><th>Id usuario</th><th>Cantidad</th><th class='sinbordes'></th><th class='sinbordes'></th>
         </tr>
-    @foreach ($userList as $user)
+    @foreach ($inventarioList as $inventario)
         <tr>
-            <td class="hover"><a href="{{route('admin.user.show', $user->id)}}" class="block">{{$user->id}}</a></td>
-            <td>{{$user->name}}</td>
-            <td class='derecha'>{{$user->email}}</td>
+            <td class="hover"><a href="{{route('admin.inventario.show', $inventario->id)}}" class="block">{{$inventario->id}}</a></td>
+            <td>{{$inventario->item_id}}</td>
+            <td class='derecha'>{{$inventario->user_id}}</td>
+            <td class='derecha'>{{$inventario->cantidad}}</td>
             <td class='sinbordes centrado'>
-                <a href="{{route('admin.user.edit', $user->id)}}">Modificar</a>
+                <a href="{{route('admin.inventario.edit', $inventario->id)}}">Modificar</a>
             </td>
             <td class='sinbordes'>
-                <form action = "{{route('admin.user.destroy', $user->id)}}" method="POST">
+                <form action = "{{route('admin.inventario.destroy', $inventario->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
                     <input type="submit" value="Borrar">
@@ -20,7 +21,7 @@
         </tr>
     @endforeach
     </table><br>
-    <a href="{{ route('admin.user.create') }}">Nuevo artículo</a>
+    <a href="{{ route('admin.inventario.create') }}">Nuevo artículo</a>
 
     <br><br>
 <form action="{{route('admin.menu')}}" method="GET" class="centrado">

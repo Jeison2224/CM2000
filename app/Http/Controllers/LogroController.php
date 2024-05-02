@@ -27,7 +27,8 @@ class LogroController extends Controller
     public function store(Request $r) {
         $p = new Logro();
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->description = $r->description;
+        $p->point = $r->point;
         $p->save();
         return redirect()->route('admin.logro.index');
     }
@@ -40,7 +41,8 @@ class LogroController extends Controller
     public function update($id, Request $r) {
         $p = Logro::find($id);
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->description = $r->description;
+        $p->point = $r->point;
         $p->save();
         return redirect()->route('admin.logro.index');
     }

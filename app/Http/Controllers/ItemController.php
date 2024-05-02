@@ -20,14 +20,15 @@ class ItemController extends Controller
     }
 
     public function create() {
-        $item = Item::all();
-        return view('admin.item.form', array('item' => $item));
+        return view('admin.item.form');
     }
 
     public function store(Request $r) {
         $p = new Item();
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->description = $r->description;
+        $p->precio = $r->precio;
+        $p->cantidadclics = $r->cantidadclics;
         $p->save();
         return redirect()->route('admin.item.index');
     }
@@ -40,7 +41,9 @@ class ItemController extends Controller
     public function update($id, Request $r) {
         $p = Item::find($id);
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->description = $r->description;
+        $p->precio = $r->precio;
+        $p->cantidadclics = $r->cantidadclics;
         $p->save();
         return redirect()->route('admin.item.index');
     }

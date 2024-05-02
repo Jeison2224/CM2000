@@ -15,19 +15,16 @@ class RankingTableSeeder extends Seeder
     {
         //
         DB::table('rankings')->insert([
-            'nombre' => 'pepe',
-            'descripcion' => 'test',
-            'valor' => 500,
+            'name' => 'pepe',
+            'point' => 500,
         ]);
         DB::table('rankings')->insert([
-            'nombre' => 'pedro',
-            'descripcion' => 'test',
-            'valor' => 200,
+            'name' => 'pedro',
+            'point' => 200,
         ]);
         DB::table('rankings')->insert([
-            'nombre' => 'jimmy',
-            'descripcion' => 'test',
-            'valor' => 400,
+            'name' => 'jimmy',
+            'point' => 400,
         ]);
     }
 }

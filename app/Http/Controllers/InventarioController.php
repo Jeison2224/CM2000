@@ -26,8 +26,9 @@ class InventarioController extends Controller
 
     public function store(Request $r) {
         $p = new Inventario();
-        $p->name = $r->name;
-        $p->email = $r->email;
+        $p->item_id = $r->item_id;
+        $p->user_id = $r->user_id;
+        $p->cantidad = $r->cantidad;
         $p->save();
         return redirect()->route('admin.inventario.index');
     }
@@ -39,8 +40,9 @@ class InventarioController extends Controller
 
     public function update($id, Request $r) {
         $p = Inventario::find($id);
-        $p->name = $r->name;
-        $p->email = $r->email;
+        $p->item_id = $r->item_id;
+        $p->user_id = $r->user_id;
+        $p->cantidad = $r->cantidad;
         $p->save();
         return redirect()->route('admin.inventario.index');
     }

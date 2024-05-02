@@ -20,14 +20,13 @@ class RankingController extends Controller
     }
 
     public function create() {
-        $ranking = Ranking::all();
-        return view('admin.ranking.form', array('ranking' => $ranking));
+        return view('admin.ranking.form');
     }
 
     public function store(Request $r) {
         $p = new Ranking();
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->point = $r->point;
         $p->save();
         return redirect()->route('admin.ranking.index');
     }
@@ -40,7 +39,7 @@ class RankingController extends Controller
     public function update($id, Request $r) {
         $p = Ranking::find($id);
         $p->name = $r->name;
-        $p->email = $r->email;
+        $p->point = $r->point;
         $p->save();
         return redirect()->route('admin.ranking.index');
     }
