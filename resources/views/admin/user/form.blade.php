@@ -1,5 +1,5 @@
 
-    @isset($product)
+    @isset($user)
         <br><br>
         <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST">
             @method('PATCH')

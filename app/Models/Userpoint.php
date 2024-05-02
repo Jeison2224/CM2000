@@ -13,4 +13,9 @@ class Userpoint extends Model
         // Otros atributos permitidos para asignación masiva
     ];
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

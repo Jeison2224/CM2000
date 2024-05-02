@@ -83,11 +83,11 @@ function enviar() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            user_id: 1, // Aquí proporciona el userId que deseas insertar
-            point: click // Aquí proporciona los puntos que deseas insertar
+            user_id: 1, 
+            point: click 
         }
     }).done(function(response){
-        console.log(response); // Muestra la respuesta del servidor en la consola
+        console.log(response); 
     });
 }
 
@@ -128,28 +128,28 @@ const datos = [
 
 
 function crearBotones() {
-    // Obtener el contenedor donde se agregarán los botones
+    
     const contenedor = document.getElementById('btncompras');
 
-    // Iterar sobre el array de datos
+    
     datos.forEach(nombre => {
-        // Crear un nuevo elemento de botón
+        
         const boton = document.createElement('button');
 
-        // Establecer el texto del botón como el nombre del array
+        
         boton.textContent = nombre;
 
-        // Agregar la clase especificada a los botones
+        
         boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2');
 
 
-        // Agregar un evento de clic al botón (opcional)
+       
         boton.addEventListener('click', function() {
             console.log('Has hecho clic en ' + nombre);
-            // Agregar aquí cualquier lógica adicional que desees ejecutar cuando se haga clic en el botón
+            
         });
 
-        // Agregar el botón al contenedor
+        
         contenedor.appendChild(boton);
     });
 }
