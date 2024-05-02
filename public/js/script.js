@@ -63,9 +63,6 @@ function verUserpoints() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {
-            id:1
-        }
     }).done(function(res){
         var datos = JSON.parse(res);
         console.log(res);
@@ -83,7 +80,6 @@ function enviar() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            user_id: 1, 
             point: click 
         }
     }).done(function(response){
@@ -91,8 +87,7 @@ function enviar() {
     });
 }
 
-const email = document.getElementById('email');
-console.log('Correo electrónico:', email);
+
 
 let updatePantalla = 30;
 let updateAuto = 1;

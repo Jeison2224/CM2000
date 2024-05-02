@@ -77,7 +77,7 @@ class UserpointController extends Controller
     public function guardarPuntos(Request $request)
     {   
         // Obtén los datos del usuario y los puntos del cuerpo de la solicitud
-        $user_id = $request->input('user_id');
+        $user_id = auth()->id();
         $point = $request->input('point');
     
         // Intenta actualizar el registro existente o crear uno nuevo
@@ -96,9 +96,10 @@ class UserpointController extends Controller
     
     public function all()
     {
-        $userp = \DB::table('userpoints')
-        ->select('userpoints.*')
-        ->get();
-        return response(json_encode($userp),200)->header("Content-Type", "text/plain");
+        $id = auth()->id();
+        $p = Userpoint::find($id);
+        $userPoints = Userpoint::where('user_id', $id)->first();
+        return response(json_encode($userPoints),200)->header("Content-Type", "text/plain");
     }
+
 }
