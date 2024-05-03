@@ -1,5 +1,18 @@
 var click = 0;
 
+window.addEventListener('load', function() {
+    // Recuperar los puntos del usuario del almacenamiento local
+    var userPoints = localStorage.getItem('userPoints');
+    
+    if (userPoints !== null) {
+        // Convertir los puntos del usuario a un número entero
+        click = parseInt(userPoints);
+    }
+    
+    // Actualizar la interfaz de usuario con los puntos recuperados
+    update();
+});
+
 let inventario = [0,0,0];
 let clickAuto = [1,5,10];
 let precioClick = [2,4,6];
@@ -66,9 +79,18 @@ function verUserpoints() {
     }).done(function(res){
         var datos = JSON.parse(res);
         console.log(res);
+        
         for (let x = 0; x < datos.length; x++) {
-            //alert(datos[x].user_id);
+            click = datos[x].point;
         }
+        console.log('Puntos del usuario:', click);
+            
+        // Almacenar los puntos del usuario en el almacenamiento local del navegador
+        localStorage.setItem('userPoints', click);
+        
+        // Actualizar la interfaz de usuario con los nuevos puntos
+        update();
+        //console.log(click);
     });
 }
 
