@@ -17,15 +17,6 @@
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
                 <!-- Contenedor 1 -->
                 <div class="mt-4" id="btncompras">
-                    <button onclick="comprar(0);" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                        1 click
-                    </button>
-                    <button onclick="comprar(1);" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2">
-                        5 click
-                    </button>
-                    <button onclick="comprar(2);" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2">
-                        10 click
-                    </button>
                 </div>
             </div>
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
