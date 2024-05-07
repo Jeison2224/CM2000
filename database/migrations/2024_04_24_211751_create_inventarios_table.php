@@ -12,10 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventarios', function (Blueprint $table) {
-            $table->bigInteger('item_id');
-            $table->bigInteger('user_id');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('item_id');
             $table->integer('cantidad');
             $table->timestamps();
+        
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
         });
     }
 

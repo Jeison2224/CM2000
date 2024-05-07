@@ -9,8 +9,8 @@ class Item extends Model
 {
     use HasFactory;
 
-    public function inventario()
+    public function inventarios()
     {
-        return $this->belongsTo(Inventario::class);
+        return $this->hasMany(Inventario::class);
     }
 }

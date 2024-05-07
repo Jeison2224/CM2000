@@ -9,13 +9,15 @@ class Inventario extends Model
 {
     use HasFactory;
 
+    // Relación: Un inventario pertenece a un usuario
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
-
-    public function items()
+    
+    // Relación: Un inventario pertenece a un ítem
+    public function item()
     {
-        return $this->hasMany(Item::class, 'item_id');
+        return $this->belongsTo(Item::class);
     }
 }

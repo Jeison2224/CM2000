@@ -15,20 +15,122 @@ class ItemTableSeeder extends Seeder
     {
         //
         DB::table('items')->insert([
-            'name' => 'item 1',
-            'description' => 'aumenta los clics de forma pasiva en 2',
+            'name' => 'Hiurgiy',
+            'description' => 'aumenta los clics de forma pasiva en ',
             'precio' => 10,
             'cantidadclics'=> 2,
         ]);
         DB::table('items')->insert([
-            'name' => 'item 2',
-            'description' => 'aumenta los clics de forma pasiva en 4',
+            'name' => 'Klosvans',
+            'description' => 'aumenta los clics de forma pasiva en ',
             'precio' => 10,
             'cantidadclics' => 4,
         ]);
         DB::table('items')->insert([
-            'name' => 'item 3',
-            'description' => 'aumenta los clics de forma pasiva en 8',
+            'name' => 'Piwecer',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Iinshall',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Qonbruix',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Lillelv',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Frioxaz',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Pullar',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Dewass',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Krayfgur',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Porstyk',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Gyevrer',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Oinzus',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Vionhaas',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Palhurrak',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Atensis',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Wountuhs',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Eimnas',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Frolanta',
+            'description' => 'aumenta los clics de forma pasiva en ',
+            'precio' => 30,
+            'cantidadclics' => 8,
+        ]);
+        DB::table('items')->insert([
+            'name' => 'Zindor',
+            'description' => 'aumenta los clics de forma pasiva en ',
             'precio' => 30,
             'cantidadclics' => 8,
         ]);

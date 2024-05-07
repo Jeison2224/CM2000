@@ -47,14 +47,71 @@ function auto() {
 function update() {
     document.getElementById("valorPuntuacion").innerHTML = click;
 
-    let inventarioHTML = '';
+    //let inventarioHTML = '';
 
     // Agregar items al inventario
-    for (let i = 0; i < 20; i++) {
+    /*for (let i = 0; i < 20; i++) {
         inventarioHTML += `item${i + 1}: ${inventario[i]}<br>`;
+    }*/
+
+    // Define un objeto para almacenar el inventario del usuario
+    // Define un objeto para almacenar el inventario del usuario
+
+    document.getElementById("inventario").innerHTML = `Hiurgiy: ${inventario[0]}<br>
+                                                        Klosvans: ${inventario[1]}<br>
+                                                        Piwecer: ${inventario[2]}<br>
+                                                        Iinshall: ${inventario[3]}<br>
+                                                        Qonbruix: ${inventario[4]}<br>
+                                                        Lillelv: ${inventario[5]}<br>
+                                                        Frioxaz: ${inventario[6]}<br>
+                                                        Pullar: ${inventario[7]}<br>
+                                                        Dewass: ${inventario[8]}<br>
+                                                        Krayfgur: ${inventario[9]}<br>
+                                                        Porstyk: ${inventario[10]}<br>
+                                                        Gyevrer: ${inventario[11]}<br>
+                                                        Oinzus: ${inventario[12]}<br>
+                                                        Vionhaas: ${inventario[13]}<br>
+                                                        Palhurrak: ${inventario[14]}<br>
+                                                        Atensis: ${inventario[15]}<br>
+                                                        Wountuhs: ${inventario[16]}<br>
+                                                        Eimnas: ${inventario[17]}<br>
+                                                        Frolanta: ${inventario[18]}<br>
+                                                        Zindor: ${inventario[19]}
+`;
+
+    //document.getElementById("inventario").innerHTML = inventarioHTML;
+}
+
+function guardarInventario() {
+    let inventoryData = {
+        items: []
+    };
+
+    // Recorre los items del inventario
+    for (let i = 1; i <= 20; i++) {
+        // Recupera el ID del ítem y la cantidad del atributo HTML
+        let item_id = document.getElementById("item" + i).getAttribute("data-item-id");
+        let item_cantidad = inventario[i - 1]; // El índice de inventario comienza desde 0
+
+        // Agrega el ítem al objeto de inventario
+        inventoryData.items.push({ id: item_id, cantidad: item_cantidad });
     }
 
-    document.getElementById("inventario").innerHTML = inventarioHTML;
+    // Envía el inventario del usuario al backend
+    $.ajax({
+        url: '/actualizar-inventario',
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify(inventoryData),
+        contentType: 'application/json',
+    }).done(function(response) {
+        console.log('Inventario actualizado:', response);
+        // Puedes realizar acciones adicionales si es necesario, como mostrar un mensaje de éxito
+    }).fail(function(xhr, status, error) {
+        console.error('Error al actualizar el inventario:', error);
+    });
 }
 
 
@@ -164,6 +221,7 @@ const datos = [
 function crearBotones() {
     const contenedor = document.getElementById('btncompras');
     let contador = 0;
+    let id = 1;
 
     datos.forEach(nombre => {
         
@@ -175,9 +233,13 @@ function crearBotones() {
 
         boton.setAttribute('onclick', 'comprar(' + contador + ')'); // Añade el atributo onclick con la función comprar y el contador como argumento
 
+        boton.setAttribute('id', 'item' + id + '');
+        boton.setAttribute('data-item-id', id );
+
         contenedor.appendChild(boton);
 
         contador++; // Incrementa el contador para el próximo botón
+        id++;
     });
 }
 
