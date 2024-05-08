@@ -35,6 +35,9 @@ Route::get('/index', function () {
 
 Route::post('/index/guardarPuntos', [UserpointController::class, 'guardarPuntos']);
 Route::post('/index/all', [UserpointController::class, 'all']);
+Route::post('/index/guardarInventario', [InventarioController::class, 'guardarInventario']);
+Route::get('/index/verInventario', [InventarioController::class, 'verInventario']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

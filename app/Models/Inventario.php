@@ -9,6 +9,12 @@ class Inventario extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'item_id', 
+        'cantidad',
+        'user_id'
+    ];
+
     // Relación: Un inventario pertenece a un usuario
     public function user()
     {

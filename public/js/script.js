@@ -1,4 +1,4 @@
-var click = 0;
+let click = 0;
 var userId = null;
 
 window.addEventListener('load', function() {
@@ -20,13 +20,14 @@ window.addEventListener('load', function() {
 let inventario = Array(20).fill(0);
 let clickAuto = Array.from({ length: 20 }, (_, i) => i + 1);
 let precioClick = Array.from({ length: 20 }, (_, i) => (i + 1) * 2);
-
+verInventario();
 
 function clic() {
     click++;
     //enviarClicks(click);
     enviar();
     verUserpoints();
+    verInventario();
 }
 
 function comprar(item) {
@@ -99,7 +100,7 @@ function guardarInventario() {
 
     // Envía el inventario del usuario al backend
     $.ajax({
-        url: '/actualizar-inventario',
+        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarInventario',
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -158,12 +159,44 @@ function verUserpoints() {
         //localStorage.setItem('userPoints', click);
         guardarDatosUsuario(userId, click);
         
-        
         // Actualizar la interfaz de usuario con los nuevos puntos
         //update();
         //console.log(click);
     });
 }
+
+function verInventario() {
+    $.ajax({
+        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/verInventario',
+        method: 'GET',
+        success: function(response) {
+            // Parsear la respuesta JSON
+            var datos = response;
+            console.log(datos);
+
+            // Limpiar cualquier contenido anterior en el array inventario
+            inventario = Array(20).fill(0); // Crear un array de 20 elementos inicializados a 0
+
+            // Iterar sobre los datos del inventario y añadir la cantidad de cada ítem al array inventario
+            for (let x = 0; x < datos.length; x++) {
+                var cantidad = datos[x].cantidad;
+                var itemId = datos[x].item_id;
+
+                // Añadir la cantidad al ítem correspondiente en el array inventario
+                inventario[itemId - 1] = cantidad; // Restamos 1 porque los índices de los arrays comienzan desde 0
+            }
+
+            // Ahora el array inventario contiene las cantidades de cada ítem del inventario
+            console.log(inventario);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+
+
 
 function enviar() {
     $.ajax({
@@ -234,6 +267,7 @@ function crearBotones() {
         boton.setAttribute('onclick', 'comprar(' + contador + ')'); // Añade el atributo onclick con la función comprar y el contador como argumento
 
         boton.setAttribute('id', 'item' + id + '');
+       
         boton.setAttribute('data-item-id', id );
 
         contenedor.appendChild(boton);

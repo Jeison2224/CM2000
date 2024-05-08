@@ -24,7 +24,7 @@
                 <div id="areaClick" onclick="clic();"></div>
                 <p id="puntuacion" class="text-xl font-bold">Puntuación: <span id="valorPuntuacion">0</span></p>
                <!-- <p id="nivel" class="text-xl font-bold">Nivel: <span id="valorNivel">1</span></p> -->
-               <button type="submit" onclick="enviar()">Guardar datos</button>
+               <button type="submit" onclick="guardarInventario()">Guardar datos</button>
                <form action = "{{route('index')}}" method="GET" class="centrado">
                     @csrf
                     <input type="submit" value="Guardar" class="grande" onclick="enviar()">

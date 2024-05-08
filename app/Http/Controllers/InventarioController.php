@@ -52,4 +52,31 @@ class InventarioController extends Controller
         $p->delete();
         return redirect()->route('admin.inventario.index');
     }
+
+    public function guardarInventario(Request $request)
+    {
+        // Decodifica los datos JSON recibidos desde el frontend
+        $inventoryData = json_decode($request->getContent(), true);
+        $user_id = auth()->id();
+    
+        // Itera sobre los ítems del inventario
+        foreach ($inventoryData['items'] as $item) {
+            // Actualiza o crea el registro en la base de datos
+            Inventario::updateOrCreate(
+                ['user_id' => $user_id, 'item_id' => $item['id']],
+                ['cantidad' => $item['cantidad']]
+            );
+        }
+    
+        // Retorna una respuesta al frontend (opcional)
+        return response()->json(['message' => 'Inventario actualizado correctamente'], 200);
+    }
+
+    public function VerInventario()
+{
+    $user_id = auth()->id();
+    $inventario = Inventario::where('user_id', $user_id)->get();
+    return response()->json($inventario);
+}
+    
 }
