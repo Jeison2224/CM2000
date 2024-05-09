@@ -1,20 +1,21 @@
 let click = 0;
-var userId = null;
+let userId = null;
 
 window.addEventListener('load', function() {
     // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
     verificarSesion();
+    verUserpoints();
     // Recuperar los puntos del usuario del almacenamiento local
-    //var userPoints = localStorage.getItem('userPoints');
+    var userPoints = localStorage.getItem('userPoints');
     click = obtenerDatosUsuario(userId);
     
-    /*if (userPoints !== null) {
+    if (userPoints !== null) {
         // Convertir los puntos del usuario a un número entero
         click = parseInt(userPoints);
-    }*/
+    }
     
     // Actualizar la interfaz de usuario con los puntos recuperados
-    //update();
+    update();
 });
 
 let inventario = Array(20).fill(0);
@@ -22,12 +23,13 @@ let clickAuto = Array.from({ length: 20 }, (_, i) => i + 1);
 let precioClick = Array.from({ length: 20 }, (_, i) => (i + 1) * 2);
 verInventario();
 
+
 function clic() {
     click++;
     //enviarClicks(click);
     enviar();
     verUserpoints();
-    verInventario();
+    //verInventario();
 }
 
 function comprar(item) {
@@ -54,9 +56,6 @@ function update() {
     /*for (let i = 0; i < 20; i++) {
         inventarioHTML += `item${i + 1}: ${inventario[i]}<br>`;
     }*/
-
-    // Define un objeto para almacenar el inventario del usuario
-    // Define un objeto para almacenar el inventario del usuario
 
     document.getElementById("inventario").innerHTML = `Hiurgiy: ${inventario[0]}<br>
                                                         Klosvans: ${inventario[1]}<br>
@@ -92,7 +91,7 @@ function guardarInventario() {
     for (let i = 1; i <= 20; i++) {
         // Recupera el ID del ítem y la cantidad del atributo HTML
         let item_id = document.getElementById("item" + i).getAttribute("data-item-id");
-        let item_cantidad = inventario[i - 1]; // El índice de inventario comienza desde 0
+        let item_cantidad = inventario[i - 1];
 
         // Agrega el ítem al objeto de inventario
         inventoryData.items.push({ id: item_id, cantidad: item_cantidad });
@@ -109,7 +108,7 @@ function guardarInventario() {
         contentType: 'application/json',
     }).done(function(response) {
         console.log('Inventario actualizado:', response);
-        // Puedes realizar acciones adicionales si es necesario, como mostrar un mensaje de éxito
+        
     }).fail(function(xhr, status, error) {
         console.error('Error al actualizar el inventario:', error);
     });
@@ -146,7 +145,7 @@ function verUserpoints() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
     }).done(function(res){
-        var datos = JSON.parse(res);
+        var datos = res;
         console.log(res);
         
         for (let x = 0; x < datos.length; x++) {
@@ -161,9 +160,11 @@ function verUserpoints() {
         
         // Actualizar la interfaz de usuario con los nuevos puntos
         //update();
-        //console.log(click);
+        console.log(click);
+        console.log(userId);
     });
 }
+
 
 function verInventario() {
     $.ajax({
@@ -175,7 +176,7 @@ function verInventario() {
             console.log(datos);
 
             // Limpiar cualquier contenido anterior en el array inventario
-            inventario = Array(20).fill(0); // Crear un array de 20 elementos inicializados a 0
+            inventario = Array(20).fill(0); 
 
             // Iterar sobre los datos del inventario y añadir la cantidad de cada ítem al array inventario
             for (let x = 0; x < datos.length; x++) {
@@ -183,7 +184,7 @@ function verInventario() {
                 var itemId = datos[x].item_id;
 
                 // Añadir la cantidad al ítem correspondiente en el array inventario
-                inventario[itemId - 1] = cantidad; // Restamos 1 porque los índices de los arrays comienzan desde 0
+                inventario[itemId - 1] = cantidad; 
             }
 
             // Ahora el array inventario contiene las cantidades de cada ítem del inventario
@@ -200,7 +201,7 @@ function verInventario() {
 
 function enviar() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', // Ruta para insertar datos en la base de datos
+        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', 
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -264,7 +265,7 @@ function crearBotones() {
 
         boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2');
 
-        boton.setAttribute('onclick', 'comprar(' + contador + ')'); // Añade el atributo onclick con la función comprar y el contador como argumento
+        boton.setAttribute('onclick', 'comprar(' + contador + ')'); 
 
         boton.setAttribute('id', 'item' + id + '');
        
@@ -272,7 +273,7 @@ function crearBotones() {
 
         contenedor.appendChild(boton);
 
-        contador++; // Incrementa el contador para el próximo botón
+        contador++;
         id++;
     });
 }
@@ -290,15 +291,15 @@ function verificarSesion() {
         dataType: 'json',
         success: function(response) {
             if (response) {
-                // El usuario está autenticado
+                
                 console.log('Usuario autenticado:', response);
-                // Realizar acciones específicas para usuarios autenticados, como mostrar opciones de menú adicionales, etc.
-                //iniciarSesionExitoso()
+                
+                iniciarSesionExitoso()
                 
             } else {
-                // El usuario no está autenticado
+                
                 console.log('Usuario no autenticado');
-                // Realizar acciones específicas para usuarios no autenticados, como ocultar opciones de menú, mostrar un formulario de inicio de sesión, etc.
+                
             }
         },
         error: function(xhr, status, error) {
@@ -314,7 +315,7 @@ function limpiarLocalStorage() {
 function iniciarSesionExitoso() {
     // Limpiar el localStorage para eliminar los datos del usuario anterior
     limpiarLocalStorage();
-    // Otros pasos para la sesión exitosa...
+    
 }
 
 function guardarDatosUsuario(id, datos) {

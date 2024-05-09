@@ -98,8 +98,8 @@ class UserpointController extends Controller
     {
         $id = auth()->id();
         $p = Userpoint::find($id);
-        $userPoints = Userpoint::where('user_id', $id)->first();
-        return response(json_encode($userPoints),200)->header("Content-Type", "text/plain");
+        $userPoints = Userpoint::where('user_id', $id)->get();
+        return response()->json($userPoints);
     }
 
 }
