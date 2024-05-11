@@ -52,4 +52,10 @@ class LogroController extends Controller
         $p->delete();
         return redirect()->route('admin.logro.index');
     }
+
+    public function VerLogro()
+    {
+        $logro = Logro::get();
+        return response()->json($logro);
+    }
 }

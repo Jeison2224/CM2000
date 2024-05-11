@@ -5,6 +5,7 @@ window.addEventListener('load', function() {
     // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
     verificarSesion();
     verUserpoints();
+    
     // Recuperar los puntos del usuario del almacenamiento local
     var userPoints = localStorage.getItem('userPoints');
     click = obtenerDatosUsuario(userId);
@@ -21,14 +22,16 @@ window.addEventListener('load', function() {
 let inventario = Array(20).fill(0);
 let clickAuto = Array.from({ length: 20 }, (_, i) => i + 1);
 let precioClick = Array.from({ length: 20 }, (_, i) => (i + 1) * 2);
+let logro = [];
+
 verInventario();
 
 
 function clic() {
     click++;
     //enviarClicks(click);
-    enviar();
-    verUserpoints();
+    //enviar();
+    //verUserpoints();
     //verInventario();
 }
 
@@ -57,27 +60,30 @@ function update() {
         inventarioHTML += `item${i + 1}: ${inventario[i]}<br>`;
     }*/
 
-    document.getElementById("inventario").innerHTML = `Hiurgiy: ${inventario[0]}<br>
-                                                        Klosvans: ${inventario[1]}<br>
-                                                        Piwecer: ${inventario[2]}<br>
-                                                        Iinshall: ${inventario[3]}<br>
-                                                        Qonbruix: ${inventario[4]}<br>
-                                                        Lillelv: ${inventario[5]}<br>
-                                                        Frioxaz: ${inventario[6]}<br>
-                                                        Pullar: ${inventario[7]}<br>
-                                                        Dewass: ${inventario[8]}<br>
-                                                        Krayfgur: ${inventario[9]}<br>
-                                                        Porstyk: ${inventario[10]}<br>
-                                                        Gyevrer: ${inventario[11]}<br>
-                                                        Oinzus: ${inventario[12]}<br>
-                                                        Vionhaas: ${inventario[13]}<br>
-                                                        Palhurrak: ${inventario[14]}<br>
-                                                        Atensis: ${inventario[15]}<br>
-                                                        Wountuhs: ${inventario[16]}<br>
-                                                        Eimnas: ${inventario[17]}<br>
-                                                        Frolanta: ${inventario[18]}<br>
-                                                        Zindor: ${inventario[19]}
+    document.getElementById("inventario").innerHTML = `
+        <span>Hiurgiy:</span> ${inventario[0]}<br>
+        <span>Klosvans:</span> ${inventario[1]}<br>
+        <span>Piwecer:</span> ${inventario[2]}<br>
+        <span>Iinshall:</span> ${inventario[3]}<br>
+        <span>Qonbruix:</span> ${inventario[4]}<br>
+        <span>Lillelv:</span> ${inventario[5]}<br>
+        <span>Frioxaz:</span> ${inventario[6]}<br>
+        <span>Pullar:</span> ${inventario[7]}<br>
+        <span>Dewass:</span> ${inventario[8]}<br>
+        <span>Krayfgur:</span> ${inventario[9]}<br>
+        <span>Porstyk:</span> ${inventario[10]}<br>
+        <span>Gyevrer:</span> ${inventario[11]}<br>
+        <span>Oinzus:</span> ${inventario[12]}<br>
+        <span>Vionhaas:</span> ${inventario[13]}<br>
+        <span>Palhurrak:</span> ${inventario[14]}<br>
+        <span>Atensis:</span> ${inventario[15]}<br>
+        <span>Wountuhs:</span> ${inventario[16]}<br>
+        <span>Eimnas:</span> ${inventario[17]}<br>
+        <span>Frolanta:</span> ${inventario[18]}<br>
+        <span>Zindor:</span> ${inventario[19]}<br>
 `;
+
+
 
     //document.getElementById("inventario").innerHTML = inventarioHTML;
 }
@@ -107,7 +113,7 @@ function guardarInventario() {
         data: JSON.stringify(inventoryData),
         contentType: 'application/json',
     }).done(function(response) {
-        console.log('Inventario actualizado:', response);
+        //console.log('Inventario actualizado:', response);
         
     }).fail(function(xhr, status, error) {
         console.error('Error al actualizar el inventario:', error);
@@ -146,13 +152,13 @@ function verUserpoints() {
         },
     }).done(function(res){
         var datos = res;
-        console.log(res);
+        //console.log(res);
         
         for (let x = 0; x < datos.length; x++) {
             click = datos[x].point;
             userId = datos[x].user_id;
         }
-        console.log('Puntos del usuario:', click);
+        //console.log('Puntos del usuario:', click);
             
         // Almacenar los puntos del usuario en el almacenamiento local del navegador
         //localStorage.setItem('userPoints', click);
@@ -160,8 +166,8 @@ function verUserpoints() {
         
         // Actualizar la interfaz de usuario con los nuevos puntos
         //update();
-        console.log(click);
-        console.log(userId);
+        //console.log(click);
+        //console.log(userId);
     });
 }
 
@@ -184,11 +190,11 @@ function verInventario() {
                 var itemId = datos[x].item_id;
 
                 // Añadir la cantidad al ítem correspondiente en el array inventario
-                inventario[itemId - 1] = cantidad; 
+                inventario[itemId - 1] = cantidad;
             }
 
             // Ahora el array inventario contiene las cantidades de cada ítem del inventario
-            console.log(inventario);
+            //console.log(inventario);
         },
         error: function(xhr, status, error) {
             console.error(error);
@@ -213,6 +219,8 @@ function enviar() {
         console.log(response); 
     });
 }
+
+
 
 
 
@@ -263,7 +271,7 @@ function crearBotones() {
 
         boton.textContent = nombre;
 
-        boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2');
+        boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2', 'button_slide', 'slide_left');
 
         boton.setAttribute('onclick', 'comprar(' + contador + ')'); 
 
@@ -292,13 +300,13 @@ function verificarSesion() {
         success: function(response) {
             if (response) {
                 
-                console.log('Usuario autenticado:', response);
+                //console.log('Usuario autenticado:', response);
                 
                 iniciarSesionExitoso()
                 
             } else {
                 
-                console.log('Usuario no autenticado');
+                //console.log('Usuario no autenticado');
                 
             }
         },
@@ -326,6 +334,13 @@ function obtenerDatosUsuario(id) {
     var datos = localStorage.getItem('usuario_' + id);
     return datos ? JSON.parse(datos) : null;
 }
+
+function guardarDatos() {
+    guardarInventario();
+    enviar();
+}
+
+
 
 
 

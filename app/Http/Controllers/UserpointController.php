@@ -81,17 +81,19 @@ class UserpointController extends Controller
         $point = $request->input('point');
     
         // Intenta actualizar el registro existente o crear uno nuevo
-        $saved = Userpoint::updateOrCreate(
+        //$saved = 
+        Userpoint::updateOrCreate(
             ['user_id' => $user_id], // Condición para buscar el registro existente
             ['point' => $point]    // Datos para actualizar o crear el nuevo registro
         );
     
         // Retorna una respuesta al cliente
-        if ($saved) {
+        //$saved
+        /*if ($saved) {
             return response()->json(['mensaje' => 'Puntos guardados correctamente'], 200);
         } else {
             return response()->json(['mensaje' => 'Error al guardar los puntos'], 500);
-        }
+        }*/
     }
     
     public function all()

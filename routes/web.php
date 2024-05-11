@@ -32,11 +32,20 @@ Route::get('/index', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('index');
 
+Route::get('/ranking', function () {
+    return view('ranking');
+})->middleware(['auth', 'verified'])->name('ranking');
+
+Route::get('/logros', function () {
+    return view('logros');
+})->middleware(['auth', 'verified'])->name('logros');
+
 
 Route::post('/index/guardarPuntos', [UserpointController::class, 'guardarPuntos']);
 Route::post('/index/all', [UserpointController::class, 'all']);
 Route::post('/index/guardarInventario', [InventarioController::class, 'guardarInventario']);
 Route::get('/index/verInventario', [InventarioController::class, 'verInventario']);
+Route::get('/logro/verLogro', [LogroController::class, 'verLogro']);
 
 
 Route::middleware('auth')->group(function () {

@@ -15,17 +15,17 @@ class LogroTableSeeder extends Seeder
     {
         //
         DB::table('logros')->insert([
-            'nombre' => 'Doble Dígitos',
+            'name' => 'Doble Dígitos',
             'description' => 'Alcanza una puntuación de 10 haciendo clics',
             'point' => 10,
         ]);
         DB::table('logros')->insert([
-            'nombre' => 'Binario Brillante',
+            'name' => 'Binario Brillante',
             'description' => 'Haz clic dos veces para convertir un número decimal a binario',
-            'point' => 8,
+            'point' => 2,
         ]);
         DB::table('logros')->insert([
-            'nombre' => 'Dupla Destreza',
+            'name' => 'Dupla Destreza',
             'description' => 'Alcanza una puntuación de 22 haciendo clics',
             'point' => 22,
         ]);

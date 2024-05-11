@@ -69,7 +69,7 @@ class InventarioController extends Controller
         }
     
         // Retorna una respuesta al frontend (opcional)
-        return response()->json(['message' => 'Inventario actualizado correctamente'], 200);
+        //return response()->json(['message' => 'Inventario actualizado correctamente'], 200);
     }
 
     public function VerInventario()
