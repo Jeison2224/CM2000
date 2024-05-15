@@ -1,3 +1,8 @@
+<x-admin-layout>
+    <head>
+        <link rel="stylesheet" href="{{ asset('../public/css/style.css') }}">
+    </head>
+    <div class="contenedor">
     <table class='sinbordes'>
         <tr>
             <th class='sinbordes derecha mitad'>Nombre:</th>
@@ -25,3 +30,5 @@
         @csrf
         <input type="submit" value="MENÚ PRINCIPAL">
     </form>
+    </div>
+</x-admin-layout>

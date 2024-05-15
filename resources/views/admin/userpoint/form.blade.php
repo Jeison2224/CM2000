@@ -1,4 +1,8 @@
-
+<x-admin-layout>
+    <head>
+        <link rel="stylesheet" href="{{ asset('../public/css/style.css') }}">
+    </head>
+    <div class="contenedor">
     @isset($userpoint)
         <br><br>
         <form action="{{ route('admin.userpoint.update', ['userpoint' => $userpoint->id]) }}" method="POST">
@@ -43,4 +47,5 @@
             @csrf
             <input type="submit" value="MENÚ PRINCIPAL">
         </form>
-
+        </div>
+</x-admin-layout>

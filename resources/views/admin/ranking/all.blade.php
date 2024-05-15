@@ -1,3 +1,8 @@
+<x-admin-layout>
+    <head>
+        <link rel="stylesheet" href="{{ asset('../public/css/style.css') }}">
+    </head>
+    <div class="contenedor">
     <table class='sinbordes'>
         <tr>
             <th>id</th><th>Nombre</th><th>Email</th><th class='sinbordes'></th><th class='sinbordes'></th>
@@ -23,7 +28,9 @@
     <a href="{{ route('admin.ranking.create') }}">Nuevo artículo</a>
 
     <br><br>
-<form action="{{route('admin.menu')}}" method="GET" class="centrado">
-    @csrf
-    <input type="submit" value="MENÚ PRINCIPAL">
-</form> 
+    <form action="{{route('admin.menu')}}" method="GET" class="centrado">
+        @csrf
+        <input type="submit" value="MENÚ PRINCIPAL">
+    </form>
+    </div>
+</x-admin-layout>

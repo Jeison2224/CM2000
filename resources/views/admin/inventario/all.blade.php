@@ -1,6 +1,11 @@
+<x-admin-layout>
+    <head>
+        <link rel="stylesheet" href="{{ asset('../public/css/style.css') }}">
+    </head>
+    <div class="contenedor">
     <table class='sinbordes'>
         <tr>
-            <th>Id Item</th><th>Id usuario</th><th>Cantidad</th><th class='sinbordes'></th><th class='sinbordes'></th>
+            <th>Id</th><th>Id Item</th><th>Id usuario</th><th>Cantidad</th><th class='sinbordes'></th><th class='sinbordes'></th>
         </tr>
     @foreach ($inventarioList as $inventario)
         <tr>
@@ -24,7 +29,9 @@
     <a href="{{ route('admin.inventario.create') }}">Nuevo artículo</a>
 
     <br><br>
-<form action="{{route('admin.menu')}}" method="GET" class="centrado">
-    @csrf
-    <input type="submit" value="MENÚ PRINCIPAL">
-</form> 
+    <form action="{{route('admin.menu')}}" method="GET" class="centrado">
+        @csrf
+        <input type="submit" value="MENÚ PRINCIPAL">
+    </form>
+    </div>
+</x-admin-layout>

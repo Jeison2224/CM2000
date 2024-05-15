@@ -12,37 +12,37 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/dashboard1')" :active="request()->routeIs('/admin/dashboard1')">
+                    <x-nav-link :href="route('admin.menu')" :active="request()->routeIs('admin.menu')">
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/user')" :active="request()->routeIs('/admin/user')">
+                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                         {{ __('Usuario') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/ranking')" :active="request()->routeIs('/admin/ranking')">
+                    <x-nav-link :href="route('admin.ranking.index')" :active="request()->routeIs('admin.ranking.index')">
                         {{ __('Ranking') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/logros')" :active="request()->routeIs('/admin/logros')">
+                    <x-nav-link :href="route('admin.logro.index')" :active="request()->routeIs('admin.logro.index')">
                         {{ __('Logros') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/userpoint')" :active="request()->routeIs('/admin/userpoint')">
+                    <x-nav-link :href="route('admin.userpoint.index')" :active="request()->routeIs('admin.userpoint.index')">
                         {{ __('Puntos de usuario') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/item')" :active="request()->routeIs('/admin/item')">
+                    <x-nav-link :href="route('admin.item.index')" :active="request()->routeIs('admin.item.index')">
                         {{ __('item') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('/admin/inventario')" :active="request()->routeIs('/admin/inventario')">
+                    <x-nav-link :href="route('admin.inventario.index')" :active="request()->routeIs('admin.inventario.index')">
                         {{ __('Inventario') }}
                     </x-nav-link>
                 </div>
@@ -97,8 +97,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('admin.menu')" :active="request()->routeIs('admin.menu')">
+                {{ __('Inicio') }}
             </x-responsive-nav-link>
         </div>
 

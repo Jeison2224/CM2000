@@ -62,4 +62,34 @@ width: 33%;
 .logros {
   border: 3px solid pink;
   padding: 30px;
+  background-color: #D80286;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  text-align: center;
+  flex-direction: column;
+  padding: 10%;
+  
+}
+
+table{
+  width: 50%;
+}
+
+table th {
+  background-color: 
+  rgb(120, 196, 219); 
+}
+
+table tr:nth-child(odd) {
+  background-color: 
+  rgb(204, 87, 188);
+}
+
+table tr:nth-child(even) {
+  background-color: 
+  pink;
 }
