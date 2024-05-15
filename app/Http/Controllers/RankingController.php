@@ -49,4 +49,10 @@ class RankingController extends Controller
         $p->delete();
         return redirect()->route('admin.ranking.index');
     }
+
+    public function VerRanking()
+    {
+        $ranking = Ranking::get();
+        return response()->json($ranking);
+    }
 }

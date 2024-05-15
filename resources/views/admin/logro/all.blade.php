@@ -1,17 +1,18 @@
     <table class='sinbordes'>
         <tr>
-            <th>id</th><th>Nombre</th><th>Email</th><th class='sinbordes'></th><th class='sinbordes'></th>
+            <th>id</th><th>Nombre</th><th>Descripcion</th><th>Puntos</th><th class='sinbordes'></th><th class='sinbordes'></th>
         </tr>
-    @foreach ($userList as $user)
+    @foreach ($logroList as $logro)
         <tr>
-            <td class="hover"><a href="{{route('admin.user.show', $user->id)}}" class="block">{{$user->id}}</a></td>
-            <td>{{$user->name}}</td>
-            <td class='derecha'>{{$user->email}}</td>
+            <td class="hover"><a href="{{route('admin.logro.show', $logro->id)}}" class="block">{{$logro->id}}</a></td>
+            <td>{{$logro->name}}</td>
+            <td class='derecha'>{{$logro->description}}</td>
+            <td>{{$logro->point}}</td>
             <td class='sinbordes centrado'>
-                <a href="{{route('admin.user.edit', $user->id)}}">Modificar</a>
+                <a href="{{route('admin.logro.edit', $logro->id)}}">Modificar</a>
             </td>
             <td class='sinbordes'>
-                <form action = "{{route('admin.user.destroy', $user->id)}}" method="POST">
+                <form action = "{{route('admin.logro.destroy', $logro->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
                     <input type="submit" value="Borrar">
@@ -20,7 +21,7 @@
         </tr>
     @endforeach
     </table><br>
-    <a href="{{ route('admin.user.create') }}">Nuevo artículo</a>
+    <a href="{{ route('admin.logro.create') }}">Nuevo artículo</a>
 
     <br><br>
 <form action="{{route('admin.menu')}}" method="GET" class="centrado">

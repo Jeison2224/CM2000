@@ -1,21 +1,25 @@
 
-    @isset($product)
+    @isset($logro)
         <br><br>
-        <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST">
+        <form action="{{ route('admin.logro.update', ['logro' => $logro->id]) }}" method="POST">
             @method('PATCH')
     @else
-        <form action="{{ route('admin.user.store') }}" method="POST">
+        <form action="{{ route('admin.logro.store') }}" method="POST">
     @endisset
             @csrf
             <br>
             <table class='sinbordes'>
                 <tr>
                     <td class='sinbordes'>Nombre:</td>
-                    <td class='sinbordes'><input type="text" name="name" value="{{ $user->name ?? '' }}" required></td>
+                    <td class='sinbordes'><input type="text" name="name" value="{{ $logro->name ?? '' }}" required></td>
                 </tr>
                 <tr>
-                    <td class='sinbordes'>Email:</td>
-                    <td class='sinbordes'><input type="text" name="email" value="{{ $user->email ?? '' }}" required></td>
+                    <td class='sinbordes'>Descripcion:</td>
+                    <td class='sinbordes'><input type="text" name="description" value="{{ $logro->description ?? '' }}" required></td>
+                </tr>
+                <tr>
+                    <td class='sinbordes'>Puntos:</td>
+                    <td class='sinbordes'><input type="text" name="point" value="{{ $logro->point ?? '' }}" required></td>
                 </tr>
                 <tr>
                    {{-- <td class='sinbordes'>Proveedor:</td>
@@ -32,7 +36,7 @@
                     </td> --}}
                 </tr>
                 <tr>
-                    <td class='sinbordes'><a href="{{ route('admin.user.index') }}">Volver al listado</a></td>
+                    <td class='sinbordes'><a href="{{ route('admin.logro.index') }}">Volver al listado</a></td>
                     <td class='sinbordes'><input type="submit"></td>
                 </tr>
             </table>

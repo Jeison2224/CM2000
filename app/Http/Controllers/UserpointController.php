@@ -23,7 +23,7 @@ class UserpointController extends Controller
 
     public function create() {
         $userpoint = Userpoint::all();
-        return view('admin.userpoint.form', array('userpoint' => $userpoint));
+        return view('admin.userpoint.form');
     }
 
     public function store(Request $r) {
@@ -50,7 +50,7 @@ class UserpointController extends Controller
     public function destroy($id) {
         $p = Userpoint::find($id);
         $p->delete();
-        return redirect()->route('admin.Userpoint.index');
+        return redirect()->route('admin.userpoint.index');
     }
     //
     /*public function guardarPuntos(Request $request)

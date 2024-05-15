@@ -21,7 +21,7 @@ class LogroController extends Controller
 
     public function create() {
         $logro = Logro::all();
-        return view('admin.logro.form', array('logro' => $logro));
+        return view('admin.logro.form');
     }
 
     public function store(Request $r) {

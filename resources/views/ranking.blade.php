@@ -29,7 +29,7 @@
             </div>
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
                 <!-- Contenedor 3 -->
-                <div id="inventario"></div>
+                <div id="lista-ranking"></div>
                 <!-- Aquí puedes agregar contenido para el tercer contenedor -->
             </div>
         </div>

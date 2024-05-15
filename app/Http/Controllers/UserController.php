@@ -21,13 +21,14 @@ class UserController extends Controller
 
     public function create() {
         $user = User::all();
-        return view('admin.user.form', array('user' => $user));
+        return view('admin.user.form');
     }
 
     public function store(Request $r) {
         $p = new User();
         $p->name = $r->name;
         $p->email = $r->email;
+        $p->password = $r->password;
         $p->save();
         return redirect()->route('admin.user.index');
     }
@@ -41,6 +42,7 @@ class UserController extends Controller
         $p = User::find($id);
         $p->name = $r->name;
         $p->email = $r->email;
+        $p->password = $r->password;
         $p->save();
         return redirect()->route('admin.user.index');
     }

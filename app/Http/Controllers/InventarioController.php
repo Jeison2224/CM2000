@@ -21,7 +21,7 @@ class InventarioController extends Controller
 
     public function create() {
         $inventario = Inventario::all();
-        return view('admin.inventario.form', array('inventario' => $inventario));
+        return view('admin.inventario.form');
     }
 
     public function store(Request $r) {

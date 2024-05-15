@@ -18,6 +18,10 @@
                     <td class='sinbordes'><input type="text" name="email" value="{{ $user->email ?? '' }}" required></td>
                 </tr>
                 <tr>
+                    <td class='sinbordes'>Contraseña:</td>
+                    <td class='sinbordes'><input type="password" name="password" value="{{ $user->password ?? '' }}" required></td>
+                </tr>
+                <tr>
                    {{-- <td class='sinbordes'>Proveedor:</td>
                     <td class='sinbordes'>
                         <select name="supplier_id">
