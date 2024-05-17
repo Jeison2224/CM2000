@@ -2,7 +2,7 @@ verLogro();
 
 function verLogro() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/logro/verLogro',
+        url: verLogroUrl,
         method: 'GET',
         success: function(response) {
             // Parsear la respuesta JSON

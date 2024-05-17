@@ -33,6 +33,14 @@
                 <!-- Aquí puedes agregar contenido para el tercer contenedor -->
             </div>
         </div>
+        <script>
+            var guardarInventarioUrl = '{{ url("/index/guardarInventario") }}';
+            var guardarPuntosUrl = '{{ url("/index/guardarPuntos") }}';
+            var allUrl           = '{{ url("/index/all") }}';
+            var verInventarioUrl = '{{ url("/index/verInventario") }}';
+            var apiUrl = '{{ url("/index/api") }}';
+            var verRankingUrl = '{{ url("/ranking/verRanking") }}';
+    </script>
         <script src="{{ asset('../public/js/script.js') }}"></script>
     </body>
     </html>

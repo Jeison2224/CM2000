@@ -107,7 +107,7 @@ function guardarInventario() {
 
     // Envía el inventario del usuario al backend
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarInventario',
+        url: guardarInventarioUrl,
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -122,32 +122,9 @@ function guardarInventario() {
     });
 }
 
-
-/*function enviarClicks(clicks) {
-    console.log('enviar ok');
-    fetch('http://localhost/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken,
-            // Puedes añadir otros headers si es necesario, como tokens de autenticación
-        },
-        body: JSON.stringify({ userId, clicks }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al guardar clicks');
-        }
-        // Puedes manejar la respuesta si es necesario
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}*/
-
 function verUserpoints() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/all',
+        url: allUrl,
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -176,7 +153,7 @@ function verUserpoints() {
 
 function verInventario() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/verInventario',
+        url: verInventarioUrl,
         method: 'GET',
         success: function(response) {
             // Parsear la respuesta JSON
@@ -209,7 +186,7 @@ function verInventario() {
 
 function enviar() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/guardarPuntos', 
+        url: guardarPuntosUrl, 
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -296,7 +273,7 @@ window.addEventListener('DOMContentLoaded', crearBotones);
 
 function verificarSesion() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/index/api',
+        url: apiUrl,
         method: 'GET',
         dataType: 'json',
         success: function(response) {
@@ -320,7 +297,7 @@ function verificarSesion() {
 
 function verRanking() {
     $.ajax({
-        url: '/Clicker_Master_2000/Laravel/cm2000/public/ranking/verRanking',
+        url: verRankingUrl,
         method: 'GET',
         success: function(response) {
             // Parsear la respuesta JSON

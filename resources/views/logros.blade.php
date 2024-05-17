@@ -21,6 +21,9 @@
                 </div>
             </div>
         </div>
+        <script>
+            var verLogroUrl = '{{ url("/logro/verLogro") }}';
+        </script>
         <script src="{{ asset('../public/js/logros.js') }}"></script>
     </body>
     </html>
