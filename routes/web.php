@@ -54,8 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/index/api', function () {
-        $user = auth()->check() ? auth()->user() : null;
-        return response(json_encode($user),200)->header("Content-Type", "text/plain");
+            $user = auth()->check() ? auth()->user() : null;
+            return response(json_encode($user),200)->header("Content-Type", "text/plain");
     });
 });
 
