@@ -376,6 +376,20 @@ function guardarDatos() {
     enviar();
 }
 
+/*function changeImage(state) {
+    const imgElement = document.getElementById('cursorImg');
+    switch (state) {
+        case 'hover':
+            imgElement.src = '/img/cursorclicsvg.svg'; // Cambia a la imagen de hover
+            break;
+        case 'click':
+            imgElement.src = '/img/cursorsum.svg'; // Cambia a la imagen de clic
+            break;
+        default:
+            imgElement.src = '/img/cursor.svg'; // Cambia a la imagen por defecto
+    }
+}*/
+
 
 
 

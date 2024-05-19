@@ -25,7 +25,7 @@
         </tr>
     @endforeach
     </table><br>
-    <a href="{{ route('admin.userpoint.create') }}">Nuevo artículo</a>
+    <a href="{{ route('admin.userpoint.create') }}">Nuevos puntos de usuario</a>
 
     <br><br>
     <form action="{{route('admin.menu')}}" method="GET" class="centrado">

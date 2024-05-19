@@ -18,26 +18,12 @@
                     <td class='sinbordes'><input type="text" name="name" value="{{ $ranking->name ?? '' }}" required></td>
                 </tr>
                 <tr>
-                    <td class='sinbordes'>clics:</td>
+                    <td class='sinbordes'>Puntos:</td>
                     <td class='sinbordes'><input type="text" name="point" value="{{ $ranking->point ?? '' }}" required></td>
                 </tr>
                 <tr>
-                   {{-- <td class='sinbordes'>Proveedor:</td>
-                    <td class='sinbordes'>
-                        <select name="supplier_id">
-                            @foreach($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}"
-                                    @if( $supplier->id == ($product->supplier_id ?? ""))
-                                        selected
-                                    @endif
-                                >{{ $supplier->name }}</option>
-                            @endforeach
-                        </select>
-                    </td> --}}
-                </tr>
-                <tr>
                     <td class='sinbordes'><a href="{{ route('admin.ranking.index') }}">Volver al listado</a></td>
-                    <td class='sinbordes'><input type="submit"></td>
+                    <td class='sinbordes'><input type="submit" value="Guardar"></td>
                 </tr>
             </table>
         </form>

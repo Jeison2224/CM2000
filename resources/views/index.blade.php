@@ -15,19 +15,24 @@
         <div class="flex flex-wrap justify-center">
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
                 <!-- Contenedor 1 -->
+                <span>Mejoras</span>
                 <div class="mt-4" id="btncompras">
                     
                 </div>
             </div>
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6 mid">
                 <!-- Contenedor 2 -->
-                <div id="areaClick" onclick="clic();">Zona para hacer clics</div>
+                <img id="cursorImg" src="{{ asset('img/cursor.svg') }}" alt="areaClick" onclick="clic();" style="height: 600px; width: auto;"
+                onmouseover="changeImage('hover')" 
+                onmouseout="changeImage('default')">
+                <!-- <div id="areaClick" onclick="clic();">Zona para hacer clics</div> -->
                 <p id="puntuacion" class="text-xl font-bold">Puntuación: <span id="valorPuntuacion">0</span></p>
                <!-- <p id="nivel" class="text-xl font-bold">Nivel: <span id="valorNivel">1</span></p> -->
                <button type="submit" onclick="guardarDatos()" class="guardar">Guardar datos</button>
             </div>
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
                 <!-- Contenedor 3 -->
+                <span>Cantidad de cada mejora</span>
                 <div id="inventario"></div>
                 <!-- Aquí puedes agregar contenido para el tercer contenedor -->
             </div>

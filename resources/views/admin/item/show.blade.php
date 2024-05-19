@@ -17,7 +17,7 @@
             <td class='sinbordes mitad'>{{ $item->precio }}</td>
         </tr>
         <tr>
-            <th class='sinbordes derecha mitad'>Cantidad:</th>
+            <th class='sinbordes derecha mitad'>Cantidad de clics:</th>
             <td class='sinbordes mitad'>{{ $item->cantidadclics }}</td>
         </tr>
     </table>

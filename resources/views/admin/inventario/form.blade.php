@@ -15,37 +15,22 @@
             <table class='sinbordes'>
                 <tr>
                     <td class='sinbordes'>Item Id:</td>
-                    <td class='sinbordes'><input type="text" name="item_id" value="{{ $user->item_id ?? '' }}" required></td>
+                    <td class='sinbordes'><input type="text" name="item_id" value="{{ $inventario->item_id ?? '' }}" required></td>
                 </tr>
                 <tr>
                     <td class='sinbordes'>Usuario Id:</td>
-                    <td class='sinbordes'><input type="text" name="user_id" value="{{ $user->user_id ?? '' }}" required></td>
+                    <td class='sinbordes'><input type="text" name="user_id" value="{{ $inventario->user_id ?? '' }}" required></td>
                 </tr>
                 <tr>
                     <td class='sinbordes'>cantidad:</td>
-                    <td class='sinbordes'><input type="text" name="cantidad" value="{{ $user->cantidad ?? '' }}" required></td>
-                </tr>
-                <tr>
-                   {{-- <td class='sinbordes'>Proveedor:</td>
-                    <td class='sinbordes'>
-                        <select name="supplier_id">
-                            @foreach($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}"
-                                    @if( $supplier->id == ($product->supplier_id ?? ""))
-                                        selected
-                                    @endif
-                                >{{ $supplier->name }}</option>
-                            @endforeach
-                        </select>
-                    </td> --}}
+                    <td class='sinbordes'><input type="text" name="cantidad" value="{{ $inventario->cantidad ?? '' }}" required></td>
                 </tr>
                 <tr>
                     <td class='sinbordes'><a href="{{ route('admin.inventario.index') }}">Volver al listado</a></td>
-                    <td class='sinbordes'><input type="submit"></td>
+                    <td class='sinbordes'><input type="submit" value="Guardar"></td>
                 </tr>
             </table>
         </form>
-
         <br><br>
         <form action = "{{route('admin.menu')}}" method="GET" class="centrado">
             @csrf

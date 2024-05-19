@@ -9,7 +9,7 @@
             <td class='sinbordes mitad'>{{ $ranking->name }}</td>
         </tr>
         <tr>
-            <th class='sinbordes derecha mitad'>clics:</th>
+            <th class='sinbordes derecha mitad'>Puntos:</th>
             <td class='sinbordes mitad'>{{ $ranking->point }}</td>
         </tr>
     </table>

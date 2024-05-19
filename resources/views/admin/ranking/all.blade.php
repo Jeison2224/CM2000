@@ -5,7 +5,7 @@
     <div class="contenedor">
     <table class='sinbordes'>
         <tr>
-            <th>id</th><th>Nombre</th><th>Email</th><th class='sinbordes'></th><th class='sinbordes'></th>
+            <th>id</th><th>Nombre</th><th>Puntos</th><th class='sinbordes'></th><th class='sinbordes'></th>
         </tr>
     @foreach ($rankingList as $ranking)
         <tr>
@@ -25,7 +25,7 @@
         </tr>
     @endforeach
     </table><br>
-    <a href="{{ route('admin.ranking.create') }}">Nuevo artículo</a>
+    <a href="{{ route('admin.ranking.create') }}">Nuevo rank</a>
 
     <br><br>
     <form action="{{route('admin.menu')}}" method="GET" class="centrado">

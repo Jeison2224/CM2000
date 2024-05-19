@@ -18,12 +18,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
-                        {{ __('Usuario') }}
+                        {{ __('Usuarios') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.ranking.index')" :active="request()->routeIs('admin.ranking.index')">
-                        {{ __('Ranking') }}
+                        {{ __('Rankings') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -33,17 +33,17 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.userpoint.index')" :active="request()->routeIs('admin.userpoint.index')">
-                        {{ __('Puntos de usuario') }}
+                        {{ __('Puntos de usuarios') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.item.index')" :active="request()->routeIs('admin.item.index')">
-                        {{ __('item') }}
+                        {{ __('items') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.inventario.index')" :active="request()->routeIs('admin.inventario.index')">
-                        {{ __('Inventario') }}
+                        {{ __('Inventarios') }}
                     </x-nav-link>
                 </div>
             </div>

@@ -26,7 +26,7 @@
         </tr>
     @endforeach
     </table><br>
-    <a href="{{ route('admin.logro.create') }}">Nuevo artículo</a>
+    <a href="{{ route('admin.logro.create') }}">Nuevo logro</a>
 
     <br><br>
     <form action="{{route('admin.menu')}}" method="GET" class="centrado">

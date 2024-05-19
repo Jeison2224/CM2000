@@ -17,10 +17,8 @@
             <td class='sinbordes mitad'>{{ $inventario->cantidad }}</td>
         </tr>
     </table>
-
     <br><br>
     <a href="{{ route('admin.inventario.index') }}" class='centrado'>Volver al listado</a>
-
     <br><br>
     <form action = "{{route('admin.menu')}}" method="GET" class="centrado">
         @csrf
