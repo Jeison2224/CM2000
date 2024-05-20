@@ -56,7 +56,16 @@ span {
 color: white;
 background-color: skyblue;
 border-radius: 15px;
-width: 33%;
+width: 9.4%;
+height: 3%;
+position: fixed;
+top: 90%;
+}
+
+#puntuacion {
+  width: 100%;
+  position: fixed;
+  top: 84%;
 }
 
 .logros {
@@ -94,4 +103,9 @@ table tr:nth-child(even) {
 
 #cursorImg:hover {
   cursor: pointer;
+}
+
+#cursorImg{
+  position: fixed;
+  top: 20%;
 }

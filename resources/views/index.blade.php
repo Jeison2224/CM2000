@@ -28,7 +28,7 @@
                 <!-- <div id="areaClick" onclick="clic();">Zona para hacer clics</div> -->
                 <p id="puntuacion" class="text-xl font-bold">Puntuación: <span id="valorPuntuacion">0</span></p>
                <!-- <p id="nivel" class="text-xl font-bold">Nivel: <span id="valorNivel">1</span></p> -->
-               <button type="submit" onclick="guardarDatos()" class="guardar">Guardar datos</button>
+               <button type="submit" onclick="guardarDatos()" class="guardar">Guardar</button>
             </div>
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6">
                 <!-- Contenedor 3 -->
@@ -44,6 +44,7 @@
                 var verInventarioUrl = '{{ url("/index/verInventario") }}';
                 var apiUrl = '{{ url("/index/api") }}';
                 var verRankingUrl = '{{ url("/ranking/verRanking") }}';
+                var verItemUrl = '{{ url("/index/verItem") }}';
         </script>
         <script src="{{ asset('../public/js/script.js') }}"></script>
     </body>

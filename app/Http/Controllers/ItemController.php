@@ -53,4 +53,9 @@ class ItemController extends Controller
         $p->delete();
         return redirect()->route('admin.item.index');
     }
+
+    public function VerItem(){
+        $item = Item::get();
+        return response()->json($item);
+    }
 }

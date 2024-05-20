@@ -47,6 +47,7 @@ Route::post('/index/guardarInventario', [InventarioController::class, 'guardarIn
 Route::get('/index/verInventario', [InventarioController::class, 'verInventario']);
 Route::get('/logro/verLogro', [LogroController::class, 'verLogro']);
 Route::get('/ranking/verRanking', [RankingController::class, 'verRanking']);
+Route::get('/index/verItem', [ItemController::class, 'verItem']);
 
 
 Route::middleware('auth')->group(function () {

@@ -3,9 +3,13 @@ let userId = null;
 
 window.addEventListener('load', function() {
     // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
+    //crearBotones();
     verificarSesion();
     verUserpoints();
     verRanking();
+    verItem();
+    
+    
     
     // Recuperar los puntos del usuario del almacenamiento local
     var userPoints = localStorage.getItem('userPoints');
@@ -21,10 +25,11 @@ window.addEventListener('load', function() {
 });
 
 let inventario = Array(20).fill(0);
-let clickAuto = Array.from({ length: 20 }, (_, i) => i + 1);
-let precioClick = Array.from({ length: 20 }, (_, i) => (i + 1) * 2);
+let clickAuto = [];
+let precioClick = [];
 let logro = [];
 let ranking = [];
+let items = [];
 
 verInventario();
 
@@ -41,6 +46,7 @@ function comprar(item) {
     if (click >= precioClick[item]) {
         inventario[item]++;
         click -= precioClick[item];
+        //alert(`Compraste ${item.nombre} por ${item.precio} con ${item.cantidad} clics.`);
     }  else {
         alert("No tienes suficiente clicks");
     }
@@ -158,7 +164,7 @@ function verInventario() {
         success: function(response) {
             // Parsear la respuesta JSON
             var datos = response;
-            console.log(datos);
+            //console.log(datos);
 
             // Limpiar cualquier contenido anterior en el array inventario
             inventario = Array(20).fill(0); 
@@ -199,10 +205,6 @@ function enviar() {
     });
 }
 
-
-
-
-
 let updatePantalla = 30;
 let updateAuto = 1;
 
@@ -239,36 +241,35 @@ const datos = [
 
 
 
-function crearBotones() {
+/*function crearBotones() {
     const contenedor = document.getElementById('btncompras');
-    let contador = 0;
-    let id = 1;
-
-    datos.forEach(nombre => {
-        
+    
+    items.forEach((item, index) => {
         const boton = document.createElement('button');
 
-        boton.textContent = nombre;
+        boton.textContent = `${item.nombre} - Precio: ${item.precio} - Clics: ${item.cantidad}`;
 
         boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2', 'button_slide', 'slide_left');
 
-        boton.setAttribute('onclick', 'comprar(' + contador + ')'); 
+        boton.setAttribute('onclick', `comprar(${index})`); 
 
-        boton.setAttribute('id', 'item' + id + '');
-       
-        boton.setAttribute('data-item-id', id );
+        boton.setAttribute('id', `item${index + 1}`);
+        boton.setAttribute('data-item-id', index + 1);
+        boton.setAttribute('data-item-price', item.precio);
+        boton.setAttribute('data-item-clicks', item.cantidad);
 
         contenedor.appendChild(boton);
-
-        contador++;
-        id++;
     });
-}
+}*/
+
+// Llamar a la función para crear los botones al cargar la página
+//window.addEventListener('DOMContentLoaded', crearBotones);
+
 
 
 
 // Llamar a la función para crear los botones al cargar la página (opcional)
-window.addEventListener('DOMContentLoaded', crearBotones);
+//window.addEventListener('DOMContentLoaded', crearBotones);
 
 
 function verificarSesion() {
@@ -302,7 +303,7 @@ function verRanking() {
         success: function(response) {
             // Parsear la respuesta JSON
             var datos = response;
-            console.log(datos);
+            //console.log(datos);
             ranking = [];
 
             for (let x = 0; x < datos.length; x++) {
@@ -326,6 +327,7 @@ function verRanking() {
         }
     });
 }
+
 
 function listarRankings(rankings) {
     // Supongamos que tienes un contenedor en tu HTML con el id "lista-logros"
@@ -351,6 +353,69 @@ function listarRankings(rankings) {
         contenedorRankings.appendChild(elementoRanking);
     }
 }
+
+function verItem() {
+    $.ajax({
+        url: verItemUrl,
+        method: 'GET',
+        success: function(response) {
+            // Parsear la respuesta JSON
+            var datos = response;
+            //console.log(datos);
+            items = [];
+
+            for (let x = 0; x < datos.length; x++) {
+                var nombre = datos[x].name;
+                var precio = datos[x].precio;
+                var cantidad = datos[x].cantidadclics;
+                
+
+                var item = {
+                    nombre: nombre,
+                    precio: precio,
+                    cantidad: cantidad
+                };
+                items.push(item);
+            }
+            
+            //listarRankings(ranking);
+            precioClick = items.map(i => i.precio);
+            clickAuto = items.map(i => i.cantidad)
+            //crearBotones(items);
+            //console.log(precioClick);
+            //console.log(clickAuto);
+
+            const contenedor = document.getElementById('btncompras');
+    
+            items.forEach((item, index) => {
+                const boton = document.createElement('button');
+        
+                boton.innerHTML = `${item.nombre} <br> Precio: ${item.precio} <br> Cantidad de clics: ${item.cantidad}`;
+        
+                boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2', 'button_slide', 'slide_left');
+        
+                boton.setAttribute('onclick', `comprar(${index})`); 
+        
+                boton.setAttribute('id', `item${index + 1}`);
+                boton.setAttribute('data-item-id', index + 1);
+                boton.setAttribute('data-item-price', item.precio);
+                boton.setAttribute('data-item-clicks', item.cantidad);
+        
+                contenedor.appendChild(boton);
+            });
+
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+/*function comprar(index) {
+    const item = items[index];
+    console.log(`Compraste ${item.nombre} por ${item.precio} con ${item.cantidad} clics.`);
+}*/
+
 
 function limpiarLocalStorage() {
     localStorage.removeItem('userPoints');

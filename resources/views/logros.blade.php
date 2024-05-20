@@ -15,6 +15,7 @@
         <div class="flex flex-wrap justify-center">
             <div class="w-full md:w-1/3 bg-gray-800 rounded-lg shadow-lg m-4 p-6 mid">
                 <!-- Contenedor -->
+                <span><h1 class="text-3xl font-bold mb-4">Clicker Master 2000</h1></span>
                 <div id="lista-logros">
 
                 </div>
