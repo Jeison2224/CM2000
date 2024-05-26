@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('precio');
+            $table->decimal('precio', 64, 0);
             $table->integer('cantidadclics');
             $table->timestamps();
         });

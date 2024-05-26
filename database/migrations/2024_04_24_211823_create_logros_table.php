@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('point');
+            $table->decimal('point', 64, 0);
             $table->timestamps();
         });
     }

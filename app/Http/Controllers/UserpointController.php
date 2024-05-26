@@ -52,28 +52,6 @@ class UserpointController extends Controller
         $p->delete();
         return redirect()->route('admin.userpoint.index');
     }
-    //
-    /*public function guardarPuntos(Request $request)
-    {
-        try {
-            // Obtener los datos de la solicitud
-            $userId = $request->input('userId');
-            $puntos = $request->input('puntos');
-
-            // Guardar los puntos en la base de datos
-            $userPoint = new Userpoint();
-            $userPoint->user_id = $userId;
-            $userPoint->puntos = $puntos;
-            $userPoint->save();
-
-            // Retornar una respuesta
-            return response()->json(['mensaje' => 'Puntos guardados correctamente'], 200);
-        } catch (\Exception $e) {
-            // Manejo de la excepción
-            return response()->json(['mensaje' => 'Error al guardar puntos: ' . $e->getMessage()], 500);
-        }
-    }*/
-
     public function guardarPuntos(Request $request)
     {   
         // Obtén los datos del usuario y los puntos del cuerpo de la solicitud
@@ -96,12 +74,11 @@ class UserpointController extends Controller
         }*/
     }
     
-    public function all()
+    public function allUser()
     {
-        $id = auth()->id();
-        $p = Userpoint::find($id);
-        $userPoints = Userpoint::where('user_id', $id)->get();
-        return response()->json($userPoints);
+        $id = auth()->id(); 
+        $userPoints = Userpoint::where('user_id', $id)->get(); 
+        return response()->json($userPoints); 
     }
 
 }

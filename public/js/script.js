@@ -1,24 +1,20 @@
 let click = 0;
 let userId = null;
 
+//enviar();
+
 window.addEventListener('load', function() {
     // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
     //crearBotones();
+    borrarDatosUsuarioNull();
     verificarSesion();
     verUserpoints();
-    verRanking();
     verItem();
     
     
     
-    // Recuperar los puntos del usuario del almacenamiento local
-    var userPoints = localStorage.getItem('userPoints');
+
     click = obtenerDatosUsuario(userId);
-    
-    if (userPoints !== null) {
-        // Convertir los puntos del usuario a un número entero
-        click = parseInt(userPoints);
-    }
     
     // Actualizar la interfaz de usuario con los puntos recuperados
     update();
@@ -27,7 +23,7 @@ window.addEventListener('load', function() {
 let inventario = Array(20).fill(0);
 let clickAuto = [];
 let precioClick = [];
-let logro = [];
+let logros = [];
 let ranking = [];
 let items = [];
 
@@ -94,6 +90,8 @@ function update() {
 
 
     //document.getElementById("inventario").innerHTML = inventarioHTML;
+
+    //comprobarLogros(click);
 }
 
 function guardarInventario() {
@@ -137,12 +135,13 @@ function verUserpoints() {
         },
     }).done(function(res){
         var datos = res;
-        //console.log(res);
+        //console.log(datos);
         
         for (let x = 0; x < datos.length; x++) {
-            click = datos[x].point;
             userId = datos[x].user_id;
+            click = datos[x].point;
         }
+        //console.log(userId);
         //console.log('Puntos del usuario:', click);
             
         // Almacenar los puntos del usuario en el almacenamiento local del navegador
@@ -151,8 +150,8 @@ function verUserpoints() {
         
         // Actualizar la interfaz de usuario con los nuevos puntos
         //update();
-        //console.log(click);
-        //console.log(userId);
+        console.log(click);
+        console.log(userId);
     });
 }
 
@@ -240,38 +239,6 @@ const datos = [
 ];
 
 
-
-/*function crearBotones() {
-    const contenedor = document.getElementById('btncompras');
-    
-    items.forEach((item, index) => {
-        const boton = document.createElement('button');
-
-        boton.textContent = `${item.nombre} - Precio: ${item.precio} - Clics: ${item.cantidad}`;
-
-        boton.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'ml-2', 'button_slide', 'slide_left');
-
-        boton.setAttribute('onclick', `comprar(${index})`); 
-
-        boton.setAttribute('id', `item${index + 1}`);
-        boton.setAttribute('data-item-id', index + 1);
-        boton.setAttribute('data-item-price', item.precio);
-        boton.setAttribute('data-item-clicks', item.cantidad);
-
-        contenedor.appendChild(boton);
-    });
-}*/
-
-// Llamar a la función para crear los botones al cargar la página
-//window.addEventListener('DOMContentLoaded', crearBotones);
-
-
-
-
-// Llamar a la función para crear los botones al cargar la página (opcional)
-//window.addEventListener('DOMContentLoaded', crearBotones);
-
-
 function verificarSesion() {
     $.ajax({
         url: apiUrl,
@@ -294,64 +261,6 @@ function verificarSesion() {
             console.error('Error:', error);
         }
     });
-}
-
-function verRanking() {
-    $.ajax({
-        url: verRankingUrl,
-        method: 'GET',
-        success: function(response) {
-            // Parsear la respuesta JSON
-            var datos = response;
-            //console.log(datos);
-            ranking = [];
-
-            for (let x = 0; x < datos.length; x++) {
-                var nombre = datos[x].name; 
-                var puntos = datos[x].point; 
-                
-
-                var rankings = {
-                    nombre: nombre,
-                    puntos: puntos
-                };
-            
-                
-                ranking.push(rankings);
-            }
-            listarRankings(ranking);
-
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
-}
-
-
-function listarRankings(rankings) {
-    // Supongamos que tienes un contenedor en tu HTML con el id "lista-logros"
-    var contenedorRankings = document.getElementById("lista-ranking");
-
-    // Iterar sobre el array de logros
-    for (let i = 0; i < rankings.length; i++) {
-        // Obtener el logro actual
-        var ranking = rankings[i];
-
-        // Crear un elemento de lista <div> para mostrar el logro
-        var elementoRanking = document.createElement("div");
-
-        // Establecer el contenido del elemento de lista con el nombre, la descripción y los puntos del logro
-        elementoRanking.innerHTML = `
-            <div class="logros">
-            <p><strong>Nombre:</strong> ${ranking.nombre}</p>
-            <p><strong>Puntos:</strong> ${ranking.puntos}</p>
-            </div>
-        `;
-
-        // Agregar el elemento de lista al contenedor
-        contenedorRankings.appendChild(elementoRanking);
-    }
 }
 
 function verItem() {
@@ -411,14 +320,59 @@ function verItem() {
     });
 }
 
-/*function comprar(index) {
-    const item = items[index];
-    console.log(`Compraste ${item.nombre} por ${item.precio} con ${item.cantidad} clics.`);
-}*/
+$.ajax({
+    url: verLogroUrl,
+    method: 'GET',
+    success: function(response) {
+        // Parsear la respuesta JSON
+        var datos = response;
+        console.log(datos);
+        logros = [];
+
+        for (let x = 0; x < datos.length; x++) {
+            var nombre = datos[x].name; 
+            var descripcion = datos[x].description; 
+            var puntos = datos[x].point; 
+                
+
+            var logro = {
+                nombre: nombre,
+                descripcion: descripcion,
+                puntos: puntos
+            };
+            
+                
+            logros.push(logro);
+        }
+            
+
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
+
+let logrosObtenidos = [];
+
+function comprobarLogros(puntosJugador) {
+    logros.forEach(logro => {
+        if (puntosJugador >= logro.puntos && !logrosObtenidos.includes(logro.nombre)) {
+            logrosObtenidos.push(logro.nombre);
+            mostrarNotificacion(logro);
+        }
+    });
+}
+
+function mostrarNotificacion(logro) {
+    alert(`¡Has logrado un nuevo hito!\n\n${logro.nombre}\n${logro.descripcion}`);
+}
+
+
 
 
 function limpiarLocalStorage() {
-    localStorage.removeItem('userPoints');
+    var test = localStorage.removeItem('userPoints');
+    console.log(test);
 }
 
 function iniciarSesionExitoso() {
@@ -428,11 +382,18 @@ function iniciarSesionExitoso() {
 }
 
 function guardarDatosUsuario(id, datos) {
-    localStorage.setItem('usuario_' + id, JSON.stringify(datos));
+    if (id === null) {
+        // Si el id es null, llamar a la función enviar()
+        enviar();
+    } else {
+        // Si el id no es null, guardar los datos en el localStorage
+        localStorage.setItem('usuario_' + id, JSON.stringify(datos));
+    }
 }
 
 function obtenerDatosUsuario(id) {
     var datos = localStorage.getItem('usuario_' + id);
+    //console.log(datos);
     return datos ? JSON.parse(datos) : null;
 }
 
@@ -455,7 +416,25 @@ function guardarDatos() {
     }
 }*/
 
+function verDatosUsuario() {
+    let datos = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        let clave = localStorage.key(i);
+        let valor = localStorage.getItem(clave);
+        datos.push({ clave: clave, valor: valor });
+    }
+    return datos;
+}
 
+// Llamar a la función para obtener los datos
+let datosUsuario = verDatosUsuario();
+console.log(datosUsuario);
+
+function borrarDatosUsuarioNull() {
+    localStorage.removeItem('usuario_null');
+}
+
+borrarDatosUsuarioNull();
 
 
 

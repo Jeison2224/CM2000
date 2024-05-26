@@ -15,57 +15,57 @@
 }
 
 .button_slide {
-    width: 100%;
-    color: #FFF;
-    border: 2px solid #3498db;
-    border-radius: 0px;
-    padding: 18px 36px;
-    display: inline-block;
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 14px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 0 #3498db;
-    -webkit-transition: ease-out 0.4s;
-    -moz-transition: ease-out 0.4s;
-    transition: ease-out 0.4s;
-  }
+  width: 100%;
+  color: #FFF;
+  border: 2px solid #3498db;
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #3498db;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
 
-  .slide_left:hover {
-    box-shadow: inset 0 0 0 50px #3498db;
-  }
+.slide_left:hover {
+  box-shadow: inset 0 0 0 50px #3498db;
+}
 
 span {
-    width: 60%;
-    color: #FFF;
-    /*border: 2px solid rgb(216, 2, 134);*/
-    border-radius: 0px;
-    padding: 18px 36px;
-    display: inline-block;
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 14px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 0 #3498db;
-    -webkit-transition: ease-out 0.4s;
-    -moz-transition: ease-out 0.4s;
-    transition: ease-out 0.4s;
+  width: 60%;
+  color: #FFF;
+  /*border: 2px solid rgb(216, 2, 134);*/
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #3498db;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
 }
 
 .guardar {
 color: white;
 background-color: skyblue;
 border-radius: 15px;
-width: 9.4%;
-height: 3%;
+width: 20%;
+/*height: 3%;
 position: fixed;
-top: 90%;
+top: 90%;*/
 }
 
 #puntuacion {
   width: 100%;
-  position: fixed;
-  top: 84%;
+  /*position: fixed;
+  top: 84%;*/
 }
 
 .logros {
@@ -105,7 +105,7 @@ table tr:nth-child(even) {
   cursor: pointer;
 }
 
-#cursorImg{
+/*#cursorImg{
   position: fixed;
   top: 20%;
-}
+}*/

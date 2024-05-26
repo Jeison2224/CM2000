@@ -42,12 +42,13 @@ Route::get('/logros', function () {
 
 
 Route::post('/index/guardarPuntos', [UserpointController::class, 'guardarPuntos']);
-Route::post('/index/all', [UserpointController::class, 'all']);
+Route::post('/index/allUser', [UserpointController::class, 'allUser']);
 Route::post('/index/guardarInventario', [InventarioController::class, 'guardarInventario']);
 Route::get('/index/verInventario', [InventarioController::class, 'verInventario']);
 Route::get('/logro/verLogro', [LogroController::class, 'verLogro']);
 Route::get('/ranking/verRanking', [RankingController::class, 'verRanking']);
 Route::get('/index/verItem', [ItemController::class, 'verItem']);
+
 
 
 Route::middleware('auth')->group(function () {
