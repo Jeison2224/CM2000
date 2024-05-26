@@ -7,23 +7,23 @@ use App\Models\Inventario;
 
 class InventarioController extends Controller
 {
-    //
+    //devuelve todos los datos de la tabla inventario
     public function index() {
         $inventarioList = Inventario::all();
         return view('admin.inventario.all', ['inventarioList'=>$inventarioList]);
     }
-
+    //devuelve un solo registro de la tabla inventario
     public function show($id) {
         $p = Inventario::find($id);
         $data['inventario'] = $p;
         return view('admin.inventario.show', $data);
     }
-
+    //devuelve un formulario para crear un nuevo registro en la tabla inventario
     public function create() {
         $inventario = Inventario::all();
         return view('admin.inventario.form');
     }
-
+    //guarda un nuevo registro en la tabla inventario
     public function store(Request $r) {
         $p = new Inventario();
         $p->item_id = $r->item_id;
@@ -32,12 +32,12 @@ class InventarioController extends Controller
         $p->save();
         return redirect()->route('admin.inventario.index');
     }
-
+    //devuelve un formulario para editar un registro de la tabla inventario
     public function edit($id) {
         $inventario = Inventario::find($id);
         return view('admin.inventario.form', array('inventario' => $inventario));
     }
-
+    //actualiza un registro de la tabla inventario
     public function update($id, Request $r) {
         $p = Inventario::find($id);
         $p->item_id = $r->item_id;
@@ -46,13 +46,13 @@ class InventarioController extends Controller
         $p->save();
         return redirect()->route('admin.inventario.index');
     }
-
+    //elimina un registro de la tabla inventario
     public function destroy($id) {
         $p = Inventario::find($id);
         $p->delete();
         return redirect()->route('admin.inventario.index');
     }
-
+    //funcion para guardar el inventario reciendo un array desde el js
     public function guardarInventario(Request $request)
     {
         // Decodifica los datos JSON recibidos desde el frontend
@@ -67,16 +67,12 @@ class InventarioController extends Controller
                 ['cantidad' => $item['cantidad']]
             );
         }
-    
-        // Retorna una respuesta al frontend (opcional)
-        //return response()->json(['message' => 'Inventario actualizado correctamente'], 200);
     }
-
-    public function VerInventario()
-{
-    $user_id = auth()->id();
-    $inventario = Inventario::where('user_id', $user_id)->get();
-    return response()->json($inventario);
-}
+    //devuelve al js un array con los inventarios
+    public function VerInventario(){
+        $user_id = auth()->id();
+        $inventario = Inventario::where('user_id', $user_id)->get();
+        return response()->json($inventario);
+    }
     
 }

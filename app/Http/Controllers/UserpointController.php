@@ -10,22 +10,23 @@ use mysqli;
 
 class UserpointController extends Controller
 {
+    //devuelve todos los datos de la tabla userpoints
     public function index() {
         $userpointList = Userpoint::all();
         return view('admin.userpoint.all', ['userpointList'=>$userpointList]);
     }
-
+    //devuelve el formulario de creación de un nuevo registro
     public function show($id) {
         $p = Userpoint::find($id);
         $data['userpoint'] = $p;
         return view('admin.userpoint.show', $data);
     }
-
+    //devuelve el formulario de edición de un registro
     public function create() {
         $userpoint = Userpoint::all();
         return view('admin.userpoint.form');
     }
-
+    //guarda un nuevo registro en la tabla userpoints
     public function store(Request $r) {
         $p = new Userpoint();
         $p->user_id = $r->user_id;
@@ -33,12 +34,12 @@ class UserpointController extends Controller
         $p->save();
         return redirect()->route('admin.userpoint.index');
     }
-
+    //actualiza un registro de la tabla userpoints
     public function edit($id) {
         $userpoint = Userpoint::find($id);
         return view('admin.userpoint.form', array('userpoint' => $userpoint));
     }
-
+    //actualiza un registro de la tabla userpoints
     public function update($id, Request $r) {
         $p = Userpoint::find($id);
         $p->user_id = $r->user_id;
@@ -46,34 +47,24 @@ class UserpointController extends Controller
         $p->save();
         return redirect()->route('admin.userpoint.index');
     }
-
+    //elimina un registro de la tabla userpoints
     public function destroy($id) {
         $p = Userpoint::find($id);
         $p->delete();
         return redirect()->route('admin.userpoint.index');
     }
+    //guarda los puntos de un usuario
     public function guardarPuntos(Request $request)
     {   
-        // Obtén los datos del usuario y los puntos del cuerpo de la solicitud
         $user_id = auth()->id();
         $point = $request->input('point');
     
-        // Intenta actualizar el registro existente o crear uno nuevo
-        //$saved = 
         Userpoint::updateOrCreate(
-            ['user_id' => $user_id], // Condición para buscar el registro existente
-            ['point' => $point]    // Datos para actualizar o crear el nuevo registro
+            ['user_id' => $user_id], 
+            ['point' => $point]    
         );
-    
-        // Retorna una respuesta al cliente
-        //$saved
-        /*if ($saved) {
-            return response()->json(['mensaje' => 'Puntos guardados correctamente'], 200);
-        } else {
-            return response()->json(['mensaje' => 'Error al guardar los puntos'], 500);
-        }*/
     }
-    
+    //devuelve al js un array con los puntos de usuario
     public function allUser()
     {
         $id = auth()->id(); 

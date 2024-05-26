@@ -5,7 +5,6 @@ let userId = null;
 
 window.addEventListener('load', function() {
     // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
-    //crearBotones();
     borrarDatosUsuarioNull();
     verificarSesion();
     verUserpoints();
@@ -29,15 +28,12 @@ let items = [];
 
 verInventario();
 
-
+//funcion para aumentar los clics
 function clic() {
     click++;
-    //enviarClicks(click);
-    //enviar();
-    //verUserpoints();
-    //verInventario();
 }
 
+//funcion para comprar items y añadirlos al inventario
 function comprar(item) {
     if (click >= precioClick[item]) {
         inventario[item]++;
@@ -48,12 +44,14 @@ function comprar(item) {
     }
 }
 
+//funcion para generar clicks de manera automatica
 function auto() {
     for (var i = 0; i < inventario.length; i++) {
         click += inventario[i]*clickAuto[i];
     }
 }
 
+//funcion para actualizar el inventario y el valor de los click en el html
 function update() {
     document.getElementById("valorPuntuacion").innerHTML = click;
 
@@ -94,6 +92,7 @@ function update() {
     //comprobarLogros(click);
 }
 
+//funcion para guardar datos del inventario
 function guardarInventario() {
     let inventoryData = {
         items: []
@@ -126,6 +125,7 @@ function guardarInventario() {
     });
 }
 
+//Recuperar puntos de usuarios desde la base de datos
 function verUserpoints() {
     $.ajax({
         url: allUrl,
@@ -144,18 +144,14 @@ function verUserpoints() {
         //console.log(userId);
         //console.log('Puntos del usuario:', click);
             
-        // Almacenar los puntos del usuario en el almacenamiento local del navegador
-        //localStorage.setItem('userPoints', click);
         guardarDatosUsuario(userId, click);
         
-        // Actualizar la interfaz de usuario con los nuevos puntos
-        //update();
         console.log(click);
         console.log(userId);
     });
 }
 
-
+//Recuperar inventario desde la base de datos
 function verInventario() {
     $.ajax({
         url: verInventarioUrl,
@@ -188,7 +184,7 @@ function verInventario() {
 
 
 
-
+//Guardar puntos de usuarios y los envia a la base de datos
 function enviar() {
     $.ajax({
         url: guardarPuntosUrl, 
@@ -204,13 +200,16 @@ function enviar() {
     });
 }
 
+//variables para updates de pantalla
 let updatePantalla = 30;
 let updateAuto = 1;
 
+//aqui se actualizan los puntos automaticos
 setInterval(function() {
     auto();
 },1000/updateAuto);
 
+//aqui se actualiza la pantalla
 setInterval(function() {
     update();
 },1000/updatePantalla);
@@ -238,7 +237,7 @@ const datos = [
     'Zindor'
 ];
 
-
+//funcion para verificar la sesion del usuario que esta logeado
 function verificarSesion() {
     $.ajax({
         url: apiUrl,
@@ -263,6 +262,7 @@ function verificarSesion() {
     });
 }
 
+//Recuperar items desde la base de datos
 function verItem() {
     $.ajax({
         url: verItemUrl,
@@ -294,6 +294,7 @@ function verItem() {
             //console.log(precioClick);
             //console.log(clickAuto);
 
+            //forEach para crear los botones de las mejoras
             const contenedor = document.getElementById('btncompras');
     
             items.forEach((item, index) => {
@@ -320,6 +321,7 @@ function verItem() {
     });
 }
 
+//Recuperar los logros desde la base de datos
 $.ajax({
     url: verLogroUrl,
     method: 'GET',
@@ -354,6 +356,7 @@ $.ajax({
 
 let logrosObtenidos = [];
 
+//funcion para comprobar si el usuario consiguio el logro
 function comprobarLogros(puntosJugador) {
     logros.forEach(logro => {
         if (puntosJugador >= logro.puntos && !logrosObtenidos.includes(logro.nombre)) {
@@ -365,20 +368,6 @@ function comprobarLogros(puntosJugador) {
 
 function mostrarNotificacion(logro) {
     alert(`¡Has logrado un nuevo hito!\n\n${logro.nombre}\n${logro.descripcion}`);
-}
-
-
-
-
-function limpiarLocalStorage() {
-    var test = localStorage.removeItem('userPoints');
-    console.log(test);
-}
-
-function iniciarSesionExitoso() {
-    // Limpiar el localStorage para eliminar los datos del usuario anterior
-    limpiarLocalStorage();
-    
 }
 
 function guardarDatosUsuario(id, datos) {
