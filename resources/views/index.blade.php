@@ -45,6 +45,7 @@
             var verRankingUrl = '{{ url("/ranking/verRanking") }}';
             var verItemUrl = '{{ url("/index/verItem") }}';
             var verLogroUrl = '{{ url("/logro/verLogro") }}';
+            var verUserUrl = '{{ url("/index/verUser") }}';
         </script>
         <script src="{{ asset('../public/js/script.js') }}"></script>
     </body>

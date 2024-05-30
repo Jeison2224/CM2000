@@ -1,13 +1,14 @@
 verLogro();
 
+//Recuperar puntos de usuarios desde la base de datos
 function verLogro() {
     $.ajax({
         url: verLogroUrl,
         method: 'GET',
         success: function(response) {
-            // Parsear la respuesta JSON
+            
             var datos = response;
-            console.log(datos);
+            //console.log(datos);
             logro = [];
 
             for (let x = 0; x < datos.length; x++) {

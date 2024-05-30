@@ -53,4 +53,11 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
+    public function VerUser(){
+
+        $id = auth()->id(); 
+        $user = User::where('id', $id)->get();
+        return response()->json($user);
+    }
+
 }

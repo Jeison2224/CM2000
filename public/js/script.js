@@ -4,19 +4,28 @@ let userId = null;
 //enviar();
 
 window.addEventListener('load', function() {
-    // Llamar a la función para verificar el estado de inicio de sesión cuando se carga la página
+    
     borrarDatosUsuarioNull();
     verificarSesion();
     verUserpoints();
     verItem();
     
-    
-    
-
     click = obtenerDatosUsuario(userId);
     
-    // Actualizar la interfaz de usuario con los puntos recuperados
+    
     update();
+});
+
+var cont = 0;
+window.addEventListener('click', function() {
+
+    if (cont == 0) {
+        cont ++;
+        var audio = new Audio("../public/sound/music.mp3");
+        audio.volume = 0.1;
+        audio.play();
+    }
+
 });
 
 let inventario = Array(20).fill(0);
@@ -25,12 +34,17 @@ let precioClick = [];
 let logros = [];
 let ranking = [];
 let items = [];
+let users = [];
+let logrosObtenidos = [];
 
 verInventario();
 
 //funcion para aumentar los clics
 function clic() {
     click++;
+    var audio = new Audio("../public/sound/Click.mp3");
+    audio.volume = 0.3;
+    audio.play();
 }
 
 //funcion para comprar items y añadirlos al inventario
@@ -38,7 +52,6 @@ function comprar(item) {
     if (click >= precioClick[item]) {
         inventario[item]++;
         click -= precioClick[item];
-        //alert(`Compraste ${item.nombre} por ${item.precio} con ${item.cantidad} clics.`);
     }  else {
         alert("No tienes suficiente clicks");
     }
@@ -52,45 +65,117 @@ function auto() {
 }
 
 //funcion para actualizar el inventario y el valor de los click en el html
-function update() {
+// Objeto con los valores para cada item
+const valoresItems = {
+    'Hiurgiy': 1,
+    'Klosvans': 2,
+    'Piwecer': 4,
+    'Iinshall': 8,
+    'Qonbruix': 16,
+    'Lillelv': 32,
+    'Frioxaz': 64,
+    'Pullar': 128,
+    'Dewass': 256,
+    'Krayfgur': 512,
+    'Porstyk': 2224,
+    'Gyevrer': 1024,
+    'Oinzus': 4096,
+    'Vionhaas': 8192,
+    'Palhurrak': 16384,
+    'Atensis': 32768,
+    'Wountuhs': 65536,
+    'Eimnas': 131072,
+    'Frolanta': 262144,
+    'Zindor': 524288
+    // Agrega aquí los valores para el resto de los items
+  };
+  
+  function update() {
     document.getElementById("valorPuntuacion").innerHTML = click;
-
-    //let inventarioHTML = '';
-
-    // Agregar items al inventario
-    /*for (let i = 0; i < 20; i++) {
-        inventarioHTML += `item${i + 1}: ${inventario[i]}<br>`;
-    }*/
-
     document.getElementById("inventario").innerHTML = `
-        <span>Hiurgiy:</span> ${inventario[0]}<br>
-        <span>Klosvans:</span> ${inventario[1]}<br>
-        <span>Piwecer:</span> ${inventario[2]}<br>
-        <span>Iinshall:</span> ${inventario[3]}<br>
-        <span>Qonbruix:</span> ${inventario[4]}<br>
-        <span>Lillelv:</span> ${inventario[5]}<br>
-        <span>Frioxaz:</span> ${inventario[6]}<br>
-        <span>Pullar:</span> ${inventario[7]}<br>
-        <span>Dewass:</span> ${inventario[8]}<br>
-        <span>Krayfgur:</span> ${inventario[9]}<br>
-        <span>Porstyk:</span> ${inventario[10]}<br>
-        <span>Gyevrer:</span> ${inventario[11]}<br>
-        <span>Oinzus:</span> ${inventario[12]}<br>
-        <span>Vionhaas:</span> ${inventario[13]}<br>
-        <span>Palhurrak:</span> ${inventario[14]}<br>
-        <span>Atensis:</span> ${inventario[15]}<br>
-        <span>Wountuhs:</span> ${inventario[16]}<br>
-        <span>Eimnas:</span> ${inventario[17]}<br>
-        <span>Frolanta:</span> ${inventario[18]}<br>
-        <span>Zindor:</span> ${inventario[19]}<br>
-`;
-
-
-
-    //document.getElementById("inventario").innerHTML = inventarioHTML;
-
-    //comprobarLogros(click);
-}
+    <div class="infoMejoras">
+      <span>Hiurgiy:</span> <span>${inventario[0]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[0] * valoresItems["Hiurgiy"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Klosvans:</span> <span>${inventario[1]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[1] * valoresItems["Klosvans"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Piwecer:</span> <span>${inventario[2]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[2] * valoresItems["Piwecer"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Iinshall:</span> <span>${inventario[3]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[3] * valoresItems["Iinshall"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Qonbruix:</span> <span>${inventario[4]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[4] * valoresItems["Qonbruix"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Lillelv:</span> <span>${inventario[5]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[5] * valoresItems["Lillelv"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Frioxaz:</span> <span>${inventario[6]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[6] * valoresItems["Frioxaz"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Pullar:</span> <span>${inventario[7]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[7] * valoresItems["Pullar"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Dewass:</span> <span>${inventario[8]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[8] * valoresItems["Dewass"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Krayfgur:</span> <span>${inventario[9]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[9] * valoresItems["Krayfgur"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Porstyk:</span> <span>${inventario[10]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[10] * valoresItems["Porstyk"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Gyevrer:</span> <span>${inventario[11]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[11] * valoresItems["Gyevrer"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Oinzus:</span> <span>${inventario[12]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[12] * valoresItems["Oinzus"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Vionhaas:</span> <span>${inventario[13]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[13] * valoresItems["Vionhaas"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Palhurrak:</span> <span>${inventario[14]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[14] * valoresItems["Palhurrak"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Atensis:</span> <span>${inventario[15]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[15] * valoresItems["Atensis"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Wountuhs:</span> <span>${inventario[16]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[16] * valoresItems["Wountuhs"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Eimnas:</span> <span>${inventario[17]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[17] * valoresItems["Eimnas"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Frolanta:</span> <span>${inventario[18]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[18] * valoresItems["Frolanta"]}</span><br>
+    </div>
+    <div class="infoMejoras">
+      <span>Zindor:</span> <span>${inventario[19]}</span><br>
+      <span>Clics por segundo:</span> <span>${inventario[19] * valoresItems["Zindor"]}</span><br>
+    </div>
+    `;
+    comprobarLogros(click);
+  }
 
 //funcion para guardar datos del inventario
 function guardarInventario() {
@@ -141,13 +226,10 @@ function verUserpoints() {
             userId = datos[x].user_id;
             click = datos[x].point;
         }
-        //console.log(userId);
-        //console.log('Puntos del usuario:', click);
             
         guardarDatosUsuario(userId, click);
-        
-        console.log(click);
-        console.log(userId);
+        //console.log(click);
+        //console.log(userId);
     });
 }
 
@@ -173,7 +255,6 @@ function verInventario() {
                 inventario[itemId - 1] = cantidad;
             }
 
-            // Ahora el array inventario contiene las cantidades de cada ítem del inventario
             //console.log(inventario);
         },
         error: function(xhr, status, error) {
@@ -287,10 +368,8 @@ function verItem() {
                 items.push(item);
             }
             
-            //listarRankings(ranking);
             precioClick = items.map(i => i.precio);
-            clickAuto = items.map(i => i.cantidad)
-            //crearBotones(items);
+            clickAuto = items.map(i => i.cantidad);
             //console.log(precioClick);
             //console.log(clickAuto);
 
@@ -326,7 +405,6 @@ $.ajax({
     url: verLogroUrl,
     method: 'GET',
     success: function(response) {
-        // Parsear la respuesta JSON
         var datos = response;
         console.log(datos);
         logros = [];
@@ -354,16 +432,55 @@ $.ajax({
     }
 });
 
-let logrosObtenidos = [];
+$.ajax({
+    url: verUserUrl,
+    method: 'GET',
+    success: function(response) {
+      var datos = response;
+      //console.log(datos);
+      users = [];
+  
+      // Obtener el ID del usuario actual
+      var usuarioId = datos.id; // Ajusta esto según la estructura de la respuesta del servidor
+  
+      // Función para obtener la clave única del usuario
+  
+      // Recuperar los logros obtenidos del localStorage
+        id = usuarioId;
+  
+      for (let x = 0; x < datos.length; x++) {
+        var id = datos[x].id;
+        var nombre = datos[x].name;
+        var user = {
+          id: id,
+          nombre: nombre
+        };
+        users.push(user);
+        //console.log(users);
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error(error);
+    }
+});
 
-//funcion para comprobar si el usuario consiguio el logro
+logrosObtenidos = JSON.parse(localStorage.getItem(obtenerIDUsuario())) || [];
+
 function comprobarLogros(puntosJugador) {
-    logros.forEach(logro => {
-        if (puntosJugador >= logro.puntos && !logrosObtenidos.includes(logro.nombre)) {
-            logrosObtenidos.push(logro.nombre);
-            mostrarNotificacion(logro);
-        }
-    });
+  logros.forEach(logro => {
+    if (puntosJugador >= logro.puntos && !logrosObtenidos.includes(logro.nombre)) {
+      logrosObtenidos.push(logro.nombre);
+      localStorage.setItem(obtenerIDUsuario(userId), JSON.stringify(logrosObtenidos));
+      
+      // Verificar si el logro no se ha obtenido anteriormente antes de mostrar la notificación
+      if (!logrosObtenidos.includes(logro.nombre)) {
+        mostrarNotificacion(logro);
+        var audio = new Audio("../public/sound/logro.mp3");
+        audio.volume = 0.5;
+        audio.play();
+      }
+    }
+  });
 }
 
 function mostrarNotificacion(logro) {
@@ -384,6 +501,19 @@ function obtenerDatosUsuario(id) {
     var datos = localStorage.getItem('usuario_' + id);
     //console.log(datos);
     return datos ? JSON.parse(datos) : null;
+}
+
+function obtenerIDUsuario(userId) {
+    if (userId === null) {
+        // Si el id es null, llamar a la función enviar()
+        enviar();
+        obtenerIDUsuario(userId);
+        console.log(userId);
+    } else {
+        // Si el id no es null, guardar los datos en el localStorage
+        console.log(userId);
+        return `logrosUsuario_${userId}`;
+    }
 }
 
 function guardarDatos() {
@@ -415,6 +545,8 @@ function verDatosUsuario() {
     return datos;
 }
 
+console.log(verDatosUsuario());
+
 // Llamar a la función para obtener los datos
 let datosUsuario = verDatosUsuario();
 console.log(datosUsuario);
@@ -423,7 +555,13 @@ function borrarDatosUsuarioNull() {
     localStorage.removeItem('usuario_null');
 }
 
+function borrarDatosUsuarioUndefined() {
+    localStorage.removeItem('logrosUsuario_undefined');
+}
+
 borrarDatosUsuarioNull();
+borrarDatosUsuarioUndefined();
+
 
 
 

@@ -50,9 +50,8 @@ class RankingController extends Controller
         return redirect()->route('admin.ranking.index');
     }
     //devuelve al js un array con los rankings
-    public function VerRanking()
-    {
-        $ranking = Ranking::get();
+    public function VerRanking() {
+        $ranking = Ranking::orderByDesc('point')->take(10)->get();
         return response()->json($ranking);
     }
 }

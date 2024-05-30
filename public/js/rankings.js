@@ -1,11 +1,12 @@
 verRanking();
 
+//Recuperar ranking desde la base de datos
 function verRanking() {
     $.ajax({
         url: verRankingUrl,
         method: 'GET',
         success: function(response) {
-            // Parsear la respuesta JSON
+            
             var datos = response;
             //console.log(datos);
             ranking = [];
@@ -14,17 +15,13 @@ function verRanking() {
                 var nombre = datos[x].name; 
                 var puntos = datos[x].point; 
                 
-
                 var rankings = {
                     nombre: nombre,
                     puntos: puntos
                 };
-            
-                
                 ranking.push(rankings);
             }
             listarRankings(ranking);
-
         },
         error: function(xhr, status, error) {
             console.error(error);
