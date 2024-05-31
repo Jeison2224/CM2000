@@ -4,13 +4,6 @@
     <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a>
 </p>
 
-<p align="center">
-    <a href="https://github.com/tu-repo/clicker-master-2000/actions"><img src="https://github.com/tu-repo/clicker-master-2000/workflows/tests/badge.svg" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/tu-repo/clicker-master-2000"><img src="https://img.shields.io/packagist/dt/tu-repo/clicker-master-2000" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/tu-repo/clicker-master-2000"><img src="https://img.shields.io/packagist/v/tu-repo/clicker-master-2000" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/tu-repo/clicker-master-2000"><img src="https://img.shields.io/packagist/l/tu-repo/clicker-master-2000" alt="License"></a>
-</p>
-
 ## Descripción del Proyecto
 
 Clicker Master 2000 es un juego de tipo clicker en el que los jugadores acumulan puntos mediante clics. Los puntos pueden ser utilizados para comprar mejoras que aumentan la cantidad de puntos obtenidos por clic. El objetivo es maximizar los puntos y gestionar eficientemente los recursos obtenidos.
